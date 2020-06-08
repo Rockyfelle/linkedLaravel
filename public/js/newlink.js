@@ -39,6 +39,7 @@ function tagAddProceed() {//Add check to see if tag exists in db
    $('#tagname').val(tagName)
    if (tagName.length > 2 && tagName.length < 17)
    $("#tagAddExpanded").removeClass('d-none');
+   console.log("aaa");
 }
 
 function tagAddSend(userId) {

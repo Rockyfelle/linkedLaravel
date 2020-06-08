@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+/*
+Route::get('/loc', function () {
     $tags = DB::table('tags')->where('user_id', Auth::id())->get();
     return view('tags', ['tags' => $tags]);
 })->middleware('auth');
@@ -37,9 +37,9 @@ Route::get('/{user_id}/friends', function ($user_id) {
     return view('friends', ['friends' => $friends]);
 })->middleware('auth');
 
-Route::post('/api/newtag', 'ApiController@newTag')->middleware('auth');
-Route::post('/api/newlink', 'ApiController@newLink')->middleware('auth');
-Route::post('/api/tag/sharelink/makedelete', 'ApiController@tagSharelinkMakeDelete')->middleware('tagWriteAccess');
+//Route::post('/api/newtag', 'ApiController@newTag')->middleware('auth');
+//Route::post('/api/newlink', 'ApiController@newLink')->middleware('auth');
+//Route::post('/api/tag/sharelink/makedelete', 'ApiController@tagSharelinkMakeDelete')->middleware('tagWriteAccess');
 
 
 Route::get('/{userId}/tag/{name}/{id}/{token?}', function ($userId, $name, $id, $token = "") {//Controller needs to make sure id of tag belongs to user or user has permission to it
@@ -47,7 +47,7 @@ Route::get('/{userId}/tag/{name}/{id}/{token?}', function ($userId, $name, $id, 
     $linkIds = DB::table('taglinks')->select('link_id')->where('tag_id', $id)->get()->pluck('link_id');
     $links = DB::table('links')->whereIn('id', $linkIds)->get();
     return view('tag', ['links' => $links, 'tag' => $tag]);
-})->middleware('tagReadAccess');
+})->middleware('tagReadAccess');*/
 
 /*
 Route::get('/{userId}/tag/{name}/{id}', function ($userId, $name, $id) {
@@ -63,17 +63,20 @@ Route::get('/{userId}/tag/{name}/{id}', function ($userId, $name, $id) {
 });*/
 
 
-
+/*
 Route::get('/me/link/{name}/{id}', function ($name, $id) {
     $link = DB::table('links')->where('id', $id)->first();
     $tagIds = DB::table('taglinks')->select('tag_id')->where('link_id', $id)->get()->pluck('tag_id');
     $tags = DB::table('tags')->whereIn('id', $tagIds)->get();
     return view('link', ['tags' => $tags, 'link' => $link]);
-})->middleware('auth');
+})->middleware('auth');*/
 
 
+Route::view('/{any}', 'app')->where('any', '.*');
 
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -1,0 +1,22 @@
+URL Scheme:
+HOME		-	/user/{username}/{id}/
+TAGS		-	/user/{username}/{id}/tags/
+TAGID		-	/user/{username}/{id}/tag/{tagname}/{tagid}/
+LINKID		-	/user/{username}/{id}/link/{prettylink}/{linkid}
+TAGIDLINK	-	/user/{username}/{id}/tag/{tagname}/{tagid}/{tagperma}
+
+API Scheme:
+TAGS		-	GET		/api/tags/{userId}/		-
+TAGS		-	POST	/api/tag/				-	tagname, tagread, tagwrite, tagperm
+TAGID		-	PUT		/api/tag/{tagId}/		-	tagname, tagread, tagwrite, tagperm
+TAGID		-	GET		/api/tag/{tagId}/		-
+TAGID		-	DELETE	/api/tag/{tagId}/		-
+LINK		-	POST	/api/link/				-	linkname, tagArray, linklink
+TAGID		-	PUT		/api/link/{linkId}/		-	linkname, tagArray, linklink
+TAGID		-	GET		/api/link/{linkId}/		-
+TAGID		-	DELETE	/api/link/{linkId}/		-
+FRIENDS		-	GET		/api/friends/			-
+FRIENDS		-	POST	/api/friends/			-
+FRIENDS		-	DELETE	/api/friends/{friendId}	-
+SHARELINK	-	POST	/api/sharelink/			-
+SHARELINK	-	DELETE	/api/sharelink/{tagId}	-
