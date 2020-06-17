@@ -31,11 +31,13 @@ Route::middleware('auth:api')->group(function() {
 	//New style per TODO.txt
 	Route::delete('link/{linkId}/{tagId}', 'LinkController@delete');
 	Route::post('link', 'LinkController@new');
+	Route::put('link', 'LinkController@update');
 	Route::delete('sharelink/{tagId}', 'ShareController@delete');
 	Route::post('sharelink', 'ShareController@new');
 
 	//Will only work for logged in users if uncommented
 	Route::get('user/{userId}/tag/{tagId}/{token?}', 'TagController@getAll');
+	Route::delete('user/{userId}/tag/{tagId}/{token?}', 'TagController@delete');
 });
 
 //Allow users and guests

@@ -10,6 +10,32 @@ use Illuminate\Http\Request;
 class TagController extends Controller
 {//TODO: include data regarding the users perms, if they have the write perm
 
+	public function delete(Request $request, $userId, $tagId)
+    {
+		if (Auth::check()) {
+
+			//Check if user is insisting that the requested tag is owned by them
+			if ($userId == "me" || $userId == Auth::id()) {
+
+				//Make sure the requesting user owns the requested tag
+				if (DB::table('tags')->where('id', $tagId)->where('user_id', Auth::id())->exists()) {
+
+					//Delete tag and remove all taglink connections to links under it, and remove all links that do not have other tags
+					//DB::table('tags')->where('id', $tagId)->delete();
+					//DB::table('taglinks')->where('tag_id', $tagId)->delete();
+					$links = DB::table('links')->leftJoin('taglinks', 'links.id', '=', 'taglinks.link_id')->whereNull('taglinks.link_id')->select('links.id')->get()->pluck('id');
+
+					return ['links' => $links];
+				}
+				//User does not own tag, or tag does not exist, deny access
+				abort(403);
+			}
+			//User does not own tag
+			abort(403);
+		}
+		//Not logged in, deny access
+		abort(401);
+	}
 
 	public function getAllApproved(Request $request, $tagId)
     {//TDOD: find a way to call this function instead of copy-pasting it all over

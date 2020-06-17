@@ -9,6 +9,44 @@ use Illuminate\Http\Request;
 
 class LinkController extends Controller //TODO: validate forms max and min chars etc
 {
+	public function update (Request $request)
+	{
+		//Check if user is logged in
+		if (Auth::check()) {
+
+			//Remove duplicate tags
+			$tagArray = array_unique($request->tagArr);
+
+			//Check that user is owner of all requested tags
+			foreach ($tagArray as $tag) {
+				if (DB::table('tags')->where('id', $tag)->where('user_id', Auth::id())->exists() == false) abort(403);
+			}
+
+			//Add link and taglinks relations
+			DB::table('links')->where('id', $request->id)->update(
+				['user_id' => Auth::id(),
+				'name' => $request->name,
+				'link' => $request->link]
+			);
+
+			//Delete old relations between tags and link
+			DB::table('taglinks')->where('link_id', $request->id)->delete();
+
+			//Set relations between tags and link
+			foreach ($tagArray as $tag) {
+				DB::table('taglinks')->insert(
+					['user_id' => Auth::id(),
+					'tag_id' => $tag,
+					'link_id' => $linkId]
+				);
+			}
+			
+			return ['status' => 'success'];
+		}
+		//Not logged in, deny access
+		abort(401);
+	}
+
 	public function new(Request $request)
 	{
 		//Check if user is logged in
@@ -29,6 +67,7 @@ class LinkController extends Controller //TODO: validate forms max and min chars
 				'link' => $request->link]
 			);
 
+			//Set relations between tags and link
 			foreach ($tagArray as $tag) {
 				DB::table('taglinks')->insert(
 					['user_id' => Auth::id(),

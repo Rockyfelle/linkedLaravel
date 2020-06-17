@@ -23,6 +23,7 @@ function Tags() {
 	const [tagObjUserId, setTagObjUserId] = useState("");
 	const [tagObjId, setTagObjId] = useState("");
 	const [shareLoading, setShareLoading] = useState(false);
+	const [tagDeleteLoading, setTagDeleteLoading] = useState(false);
 
 	function validateForm() {
 		return email.length > 0 && password.length > 0;
@@ -87,7 +88,24 @@ function Tags() {
 	}
 
 	function tagDelete() {
-
+		//setTagDeleteLoading(true);
+		fetch("http://localhost:8080/api/user/" + params.userId + "/tag/" + params.tagId, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token,
+			}
+		})
+			.then(res => res.json())
+			.then(
+				(result) => {
+					linksArr.splice(index, 1);
+					setLinksArr([...linksArr]);
+				},
+				(error) => {
+					alert("error");
+				}
+			);
 	}
 
 	function linkDelete(index, linkId) {
@@ -149,9 +167,9 @@ function Tags() {
 					<div className="col-8 p-0">
 						<a style={{ fontSize: "20px", color: "lightgray" }} href={link.link}>{link.name}</a>
 					</div>
-					<div className="col-2 p-0">
-						<input type="button" className="btn btn-secondary btn-block float-right h-100 mr-4" value="Edit Link" onClick={test} href={"localhost:8080/rlinkedit/" + link.name + "/" + link.id} />
-					</div>
+					<a className="col-2 p-0" href={"http://localhost:8080/user/" + params.username + "/" + params.userId + "/editlink/" + params.tagname + "/" + params.tagId + "/" + link.name + "/" + link.id}>
+						<input type="button" className="btn btn-secondary btn-block float-right h-100 mr-4" value="Edit Link"  />
+					</a>
 					<div className="col-2 p-0">
 						<input type="button" className="btn btn-danger btn-block float-right h-100 ml-4" value="Delete Link" onClick={() => linkDelete(index, link.id)}/>
 					</div>
@@ -178,7 +196,7 @@ function Tags() {
 										<div className="col-1 text-center">
 										</div>
 										<div className="col-3 text-center">
-											<input type="button" className="btn btn-danger btn-block float-right h-100 ml-4" value="Delete Tag" onClick={tagDelete} />
+											<input type="button" className="btn btn-danger btn-block float-right h-100 ml-4" value="Delete Tag" onClick={tagDelete} disabled={tagDeleteLoading} />
 										</div>
 									</div>
 									<div className="card-header row" style={{ fontSize: "25px" }}>

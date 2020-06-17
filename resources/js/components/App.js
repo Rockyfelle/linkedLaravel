@@ -7,6 +7,7 @@ import Register from './Register'
 import Tags from './Tags'
 import Tag from './Tag'
 import Newlink from './Newlink'
+import Editlink from './Editlink'
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -75,13 +76,14 @@ function App() {
 
 				<div className="py-4">
 						<Switch>
-							<Route path="/" component={Error} exact />
+							<Route path="/" component={Tags} exact />
 							<Route path="/test" component={Test} />
 							<Route path="/login" component={Login} />
 							<Route path="/register" component={Register} />
 							<Route path="/user/:username/:userid/tags" component={Tags} />
 							<Route path="/user/:username/:userId/tag/:tagname/:tagId/:tagPerm?" component={Tag} />
 							<Route path="/user/:username/:userId/newlink" component={Newlink} />
+							<Route path="/user/:username/:userId/editlink/:tagname/:tagId/:linkname/:linkId" component={Editlink} />
 							<Route component={Error} />
 						</Switch>
 				</div>
