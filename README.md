@@ -1,3 +1,36 @@
+## Installation Instructions
+1. Install PHP 7.4+ from https://www.php.net/manual/en/install.php
+1. a) If on windows, refer to the following article on installation instructions https://www.sitepoint.com/how-to-install-php-on-windows/, ignore step 5 and on in the article
+1. b) Make sure to uncomment extensions: mysql, mbstring, fileinfo, pdo_mysql, and openssl in php.ini
+2. Install node.js from https://nodejs.org/en/download/
+3. Install composer from https://getcomposer.org/download/
+4. Clone the repository into a choosen folder
+5. Navigate to the folder in powershell or terminal of your choice
+6. Run "composer install"
+7. Copy .env.example to .env
+8. Edit .env and setup all DB_ variables to your local database
+9. Run "php artisan key:generate"
+10. Run "php artisan migrate"
+11. Run "php artisan passport:install"
+12. Run "npm install cross-env"
+
+## Optional, populate database with test data
+1. Run "php artisan db:seed"
+
+## Start server
+1. Open a terminal inside project folder and run "php artisan serve --port 8080"
+2. Open another terminal inside project folder and run "npm run watch"
+3. Navigate to localhost:8080 in the browser of your choosing
+
+
+
+
+
+
+
+
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
