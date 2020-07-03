@@ -24,6 +24,7 @@ function Tags() {
 	const [profilePendingTo, setProfilePendingTo] = useState(false);
 	const [profilePendingFrom, setProfilePendingFrom] = useState(false);
 	const [friendDeleteLoading, setFriendDeleteLoading] = useState(false);
+	const [tags, setTags] = useState([]);
 
 
 
@@ -148,9 +149,47 @@ function Tags() {
 					alert("error");
 				}
 			);
+
+		fetch(`http://${window.location.host}/api/tags/${params.userId}/`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': 'Bearer ' + token,
+					//'Content-Type': 'application/x-www-form-urlencoded',
+				  }
+			})
+				.then(res => res.json())
+				.then(
+					(result) => {
+						setTags(result.tags);
+					},
+					(error) => {
+						alert("error");
+					}
+				);
 	}, []);
 
-
+	var tagArr = []
+    if (tags.length != 0) {
+        tags.map((tag, index) => (
+            tagArr.push(<React.Fragment key={index}>
+                <div className="row">
+                    <div className="col-8 p-0">
+                        <Link style={{fontSize: "20px", color: "white"}} to={"/user/" + username + "/" + tag.user_id + "/tag/" + tag.name + "/" + tag.id}>{tag.name}</Link>
+                    </div>
+                    <div className="col-2 p-0">
+						<Link to={`/user/${username}/${userid}/edittag/${tag.name}/${tag.id}`}>
+                        	<input type="button" className="btn btn-secondary btn-block float-right h-100 mr-4" value="Edit Tag" />
+						</Link>
+                    </div>
+                    <div className="col-2 p-0">
+                        <input type="button" className="btn btn-danger btn-block float-right h-100 ml-4" value="Delete Tag" />
+                    </div>
+                </div>
+                <br />
+            </React.Fragment>)
+        ));
+    }
 
 	return (
 
@@ -190,7 +229,7 @@ function Tags() {
 										
 									</div>
 									<div className="container-fluid mt-5 mb-3">
-										
+										<Link to={`/user/${params.username}/${params.userId}/tags`}>Click here to view this users tags</Link>
 									</div>
 									<br />
 								</div>

@@ -84,6 +84,12 @@ class TagLinkSeeder extends Seeder
                 'tag_id' => $i,
                 'link_id' => '6',
             ]);
-        }
+		}
+		
+		DB::table('taglinks')->insert([
+            'user_id' => '2',
+            'tag_id' => '8',
+            'link_id' => '7',
+        ]);
     }
 }

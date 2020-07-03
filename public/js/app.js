@@ -87623,6 +87623,11 @@ function Tags() {
       friendDeleteLoading = _useState20[0],
       setFriendDeleteLoading = _useState20[1];
 
+  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState22 = _slicedToArray(_useState21, 2),
+      tags = _useState22[0],
+      setTags = _useState22[1];
+
   function friendDelete(index) {
     setProfileLoading(true);
     fetch("http://".concat(window.location.host, "/api/user/").concat(profileId), {
@@ -87729,7 +87734,55 @@ function Tags() {
     }, function (error) {
       alert("error");
     });
+    fetch("http://".concat(window.location.host, "/api/tags/").concat(params.userId, "/"), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token //'Content-Type': 'application/x-www-form-urlencoded',
+
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setTags(result.tags);
+    }, function (error) {
+      alert("error");
+    });
   }, []);
+  var tagArr = [];
+
+  if (tags.length != 0) {
+    tags.map(function (tag, index) {
+      return tagArr.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+        key: index
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-8 p-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        style: {
+          fontSize: "20px",
+          color: "white"
+        },
+        to: "/user/" + username + "/" + tag.user_id + "/tag/" + tag.name + "/" + tag.id
+      }, tag.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-2 p-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/user/".concat(username, "/").concat(userid, "/edittag/").concat(tag.name, "/").concat(tag.id)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "button",
+        className: "btn btn-secondary btn-block float-right h-100 mr-4",
+        value: "Edit Tag"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-2 p-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "button",
+        className: "btn btn-danger btn-block float-right h-100 ml-4",
+        value: "Delete Tag"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
+    });
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -87790,7 +87843,9 @@ function Tags() {
     disabled: profileLoading
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container-fluid mt-5 mb-3"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/user/".concat(params.username, "/").concat(params.userId, "/tags")
+  }, "Click here to view this users tags")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Tags);

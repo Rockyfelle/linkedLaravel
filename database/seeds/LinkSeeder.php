@@ -51,6 +51,13 @@ class LinkSeeder extends Seeder
             'user_id' => '1',
             'link' => 'http://localhost:8080/me/tags/',
             'name' => 'Link of Every Tag',
+		]);
+		
+		DB::table('links')->insert([
+			'id' => '7',
+            'user_id' => '2',
+            'link' => 'http://localhost:8080/me/tags/',
+            'name' => 'Link of Every Tag 2',
         ]);
     }
 }

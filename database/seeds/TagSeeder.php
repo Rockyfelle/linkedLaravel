@@ -72,6 +72,15 @@ class TagSeeder extends Seeder
             'perm_read' => 'private',
             'perm_write' => 'private',
             'access_token' => '',
+		]);
+		
+		DB::table('tags')->insert([
+			'id' => '8',
+            'user_id' => '2',
+            'name' => 'user2PublicTag',
+            'perm_read' => 'public',
+            'perm_write' => 'private',
+            'access_token' => '',
         ]);
     }
 }
