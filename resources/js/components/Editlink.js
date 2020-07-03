@@ -4,6 +4,7 @@ import { Button, FormGroup, FormControl, FormLabel, withRouter, Form} from "reac
 import ReactDOM from 'react-dom';
 
 function Newlink() {
+	const params = useParams();
     const [token, setToken] = React.useState(
         localStorage.getItem('token') || ''
 	);
@@ -35,7 +36,7 @@ function Newlink() {
 		document.body.style.backgroundColor = "#2C2C33";
 		setIsLoading(true);
 
-        fetch("http://localhost:8080/api/tags/" + userid, {
+        fetch("http://" + window.location.host + "/api/tags/" + userid, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,20 +46,44 @@ function Newlink() {
             .then(res => res.json())
             .then(
                 (result) => {
-					setTags(result);
+					setTags(result.tags);
 					setIsLoading(false);
                 },
                 (error) => {
                     alert("error");
                 }
-            );
+			);
+			
+		fetch("http://" + window.location.host + "/api/link/" + params.linkId + "/" + params.tagId + "/" + userid, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token,
+              }
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+					setName(result.link.name);
+					setLink(result.link.link);
+					setSelectedTags([...result.tags]);
+					for (let i = 0; i < result.tags.length; i++) {
+						$(`#${result.tags[i]}`).prop('checked', true);
+					}
+					setIsLoading(false);
+                },
+                (error) => {
+                    alert("error");
+                }
+			);
+			
       }, []);
 
     function handleSubmit(event) {
 		setIsLoading(true);
 		event.preventDefault();
-		fetch("http://localhost:8080/api/link", {
-            method: 'POST',
+		fetch("http://" + window.location.host + "/api/link/" + params.linkId + "/" + params.tagId + "/" + userid, {
+            method: 'PUT',
             headers: {
 				'Content-Type': 'application/json',
 				'Authorization': 'Bearer ' + token,
@@ -72,6 +97,7 @@ function Newlink() {
 					setName("");
 					setLink("");
 					setIsLoading(false);
+					window.history.back();
                 },
                 (error) => {
                     alert("error");
@@ -108,6 +134,7 @@ function Newlink() {
 										<FormGroup controlId="name">
 											<FormLabel>Name</FormLabel>
 											<FormControl
+												disabled={isLoading}
 												required
 												autoFocus
 												type="text"
@@ -119,6 +146,7 @@ function Newlink() {
 										<FormGroup controlId="link">
 											<FormLabel>Link</FormLabel>
 											<FormControl
+												disabled={isLoading}
 												required
 												value={link}
 												onChange={e => setLink(e.target.value)}
@@ -128,7 +156,7 @@ function Newlink() {
 										</FormGroup>
 										{tagArr}
 										<Button block disabled={validateForm()} type="submit">
-											Add Link
+											Update Link
 										</Button>
 									</form>
                                 </div>

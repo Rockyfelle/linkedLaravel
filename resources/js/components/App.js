@@ -8,6 +8,9 @@ import Tags from './Tags'
 import Tag from './Tag'
 import Newlink from './Newlink'
 import Editlink from './Editlink'
+import Edittag from './Edittag'
+import Friends from './Friends'
+import View from './View'
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -32,9 +35,9 @@ function App() {
 			<div id="app">
 				<nav className="navbar navbar-expand-md navbar-light bg-dark shadow-sm p-0">
 					<div className="container m-0">
-						<a className="navbar-brand text-light" href="http://localhost:8080/" style={{fontSize: "30px"}}>
+						<Link className="navbar-brand text-light" to={`/user/${username}/${userid}/tags`} style={{fontSize: "30px"}}>
 							Linked
-						</a>
+						</Link>
 						<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="">
 							<span className="navbar-toggler-icon"></span>
 						</button>
@@ -56,16 +59,16 @@ function App() {
 									{(token != "") &&
 										<React.Fragment>
 											<li className="nav-item">
-												<a className="nav-link text-light" href={"http://localhost:8080/user/" + username + "/" + userid + "/tags/"}>My Tags</a>
+												<Link className="nav-link text-light" to={"/user/" + username + "/" + userid + "/tags/"}>My Tags</Link>
 											</li>
 											<li className="nav-item">
-												<a className="nav-link text-light" href={"http://localhost:8080/user/" + username + "/" + userid + "/friends/"}>Friends</a>
+												<Link className="nav-link text-light" to={"/user/" + username + "/" + userid + "/friends/"}>Friends</Link>
 											</li>
 											<li className="nav-item">
-												<a className="nav-link text-light" href={"http://localhost:8080/user/" + username + "/" + userid}>{username}</a>
+												<Link className="nav-link text-light" to={"/user/" + username + "/" + userid}>{username}</Link>
 											</li>
 											<li className="nav-item">
-												<a className="nav-link text-light" href={"http://localhost:8080/login"}>Logout</a>
+												<Link className="nav-link text-light" to={"/login"}>Logout</Link>
 											</li>
 										</React.Fragment>
 									}
@@ -84,6 +87,9 @@ function App() {
 							<Route path="/user/:username/:userId/tag/:tagname/:tagId/:tagPerm?" component={Tag} />
 							<Route path="/user/:username/:userId/newlink" component={Newlink} />
 							<Route path="/user/:username/:userId/editlink/:tagname/:tagId/:linkname/:linkId" component={Editlink} />
+							<Route path="/user/:username/:userId/edittag/:tagname/:tagId/" component={Edittag} />
+							<Route path="/user/:username/:userId/friends" component={Friends} />
+							<Route path="/user/:username/:userId/view" component={View} />
 							<Route component={Error} />
 						</Switch>
 				</div>

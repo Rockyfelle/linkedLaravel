@@ -19,7 +19,7 @@ function Register() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        fetch("http://localhost:8080/api/register", {
+        fetch("http://" + window.location.host + "/api/register", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ function Register() {
             .then(res => res.json())
             .then(
                 (result) => {
-					window.location.replace("http://localhost:8080/rlogin");
+					window.location.replace(window.location.host + "/login");
                 },
                 (error) => {
                     alert("error");

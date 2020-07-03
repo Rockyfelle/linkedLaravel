@@ -12,67 +12,67 @@ class TagLinkSeeder extends Seeder
     public function run()
     {
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '1',
             'link_id' => '1',
         ]);
 
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '2',
             'link_id' => '1',
         ]);
 
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '3',
             'link_id' => '1',
         ]);
 
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '1',
             'link_id' => '2',
         ]);
 
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '2',
             'link_id' => '2',
         ]);
 
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '3',
             'link_id' => '2',
         ]);
 
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '1',
             'link_id' => '3',
         ]);
 
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '2',
             'link_id' => '3',
         ]);
 
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '2',
             'link_id' => '4',
         ]);
 
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '3',
             'link_id' => '4',
         ]);
 
         DB::table('taglinks')->insert([
-            'user_id' => '4',
+            'user_id' => '1',
             'tag_id' => '3',
             'link_id' => '5',
         ]);
@@ -80,7 +80,7 @@ class TagLinkSeeder extends Seeder
         //Add the "link of every tag" link to every tag
         for ($i = 1; $i < 8; $i++) {
             DB::table('taglinks')->insert([
-                'user_id' => '4',
+                'user_id' => '1',
                 'tag_id' => $i,
                 'link_id' => '6',
             ]);

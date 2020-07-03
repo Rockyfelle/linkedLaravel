@@ -10,7 +10,7 @@ class UserSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {/*
         DB::table('users')->insert([
             'name' => 'private',
             'email' => 'private@local.com',
@@ -33,9 +33,10 @@ class UserSeeder extends Seeder
             'username' => 'admin',
 			'password' => '1',
 			'tagvisibility' => 'private',
-        ]);
+        ]);*/
 
         DB::table('users')->insert([
+			'id' => '1',
             'name' => 'User 1',
             'email' => 'user1@gmail.com',
             'username' => 'user1',
@@ -44,6 +45,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
+			'id' => '2',
             'name' => 'User1\'s Friend',
             'email' => 'user2@gmail.com',
             'username' => 'user1friend',
@@ -52,6 +54,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
+			'id' => '3',
             'name' => 'User 3',
             'email' => 'user3@gmail.com',
             'username' => 'user3',

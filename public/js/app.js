@@ -85477,8 +85477,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Tag__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Tag */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Tag.js");
 /* harmony import */ var _Newlink__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Newlink */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Newlink.js");
 /* harmony import */ var _Editlink__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Editlink */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Editlink.js");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/bootstrap/dist/css/bootstrap.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _Edittag__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Edittag */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Edittag.js");
+/* harmony import */ var _Friends__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Friends */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Friends.js");
+/* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./View */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/View.js");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_13__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -85490,6 +85493,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -85532,9 +85538,9 @@ function App() {
     className: "navbar navbar-expand-md navbar-light bg-dark shadow-sm p-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container m-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     className: "navbar-brand text-light",
-    href: "http://localhost:8080/",
+    to: "/user/".concat(username, "/").concat(userid, "/tags"),
     style: {
       fontSize: "30px"
     }
@@ -85570,24 +85576,24 @@ function App() {
     href: "{{ route('register') }}"
   }, "Register"))), token != "" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     className: "nav-link text-light",
-    href: "http://localhost:8080/user/" + username + "/" + userid + "/tags/"
+    to: "/user/" + username + "/" + userid + "/tags/"
   }, "My Tags")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     className: "nav-link text-light",
-    href: "http://localhost:8080/user/" + username + "/" + userid + "/friends/"
+    to: "/user/" + username + "/" + userid + "/friends/"
   }, "Friends")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     className: "nav-link text-light",
-    href: "http://localhost:8080/user/" + username + "/" + userid
+    to: "/user/" + username + "/" + userid
   }, username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     className: "nav-link text-light",
-    href: "http://localhost:8080/login"
+    to: "/login"
   }, "Logout"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "py-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -85615,6 +85621,15 @@ function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/user/:username/:userId/editlink/:tagname/:tagId/:linkname/:linkId",
     component: _Editlink__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/user/:username/:userId/edittag/:tagname/:tagId/",
+    component: _Edittag__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/user/:username/:userId/friends",
+    component: _Friends__WEBPACK_IMPORTED_MODULE_11__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/user/:username/:userId/view",
+    component: _View__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     component: Error
   })))));
@@ -85669,6 +85684,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Newlink() {
+  var params = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])();
+
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('token') || ''),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       token = _React$useState2[0],
@@ -85721,7 +85738,7 @@ function Newlink() {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     document.body.style.backgroundColor = "#2C2C33";
     setIsLoading(true);
-    fetch("http://localhost:8080/api/tags/" + userid, {
+    fetch("http://" + window.location.host + "/api/tags/" + userid, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -85730,7 +85747,28 @@ function Newlink() {
     }).then(function (res) {
       return res.json();
     }).then(function (result) {
-      setTags(result);
+      setTags(result.tags);
+      setIsLoading(false);
+    }, function (error) {
+      alert("error");
+    });
+    fetch("http://" + window.location.host + "/api/link/" + params.linkId + "/" + params.tagId + "/" + userid, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setName(result.link.name);
+      setLink(result.link.link);
+      setSelectedTags(_toConsumableArray(result.tags));
+
+      for (var i = 0; i < result.tags.length; i++) {
+        $("#".concat(result.tags[i])).prop('checked', true);
+      }
+
       setIsLoading(false);
     }, function (error) {
       alert("error");
@@ -85740,8 +85778,8 @@ function Newlink() {
   function handleSubmit(event) {
     setIsLoading(true);
     event.preventDefault();
-    fetch("http://localhost:8080/api/link", {
-      method: 'POST',
+    fetch("http://" + window.location.host + "/api/link/" + params.linkId + "/" + params.tagId + "/" + userid, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token //'Content-Type': 'application/x-www-form-urlencoded',
@@ -85758,6 +85796,7 @@ function Newlink() {
       setName("");
       setLink("");
       setIsLoading(false);
+      window.history.back();
     }, function (error) {
       alert("error");
     });
@@ -85809,6 +85848,7 @@ function Newlink() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], {
     controlId: "name"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormLabel"], null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormControl"], {
+    disabled: isLoading,
     required: true,
     autoFocus: true,
     type: "text",
@@ -85820,6 +85860,7 @@ function Newlink() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], {
     controlId: "link"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormLabel"], null, "Link"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormControl"], {
+    disabled: isLoading,
     required: true,
     value: link,
     onChange: function onChange(e) {
@@ -85831,10 +85872,470 @@ function Newlink() {
     block: true,
     disabled: validateForm(),
     type: "submit"
-  }, "Add Link"))))))));
+  }, "Update Link"))))))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Newlink);
+
+/***/ }),
+
+/***/ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Edittag.js":
+/*!**************************************************************************************************************!*\
+  !*** C:/Folders/Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Edittag.js ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function Newlink() {
+  var params = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])();
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('token') || ''),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      token = _React$useState2[0],
+      setToken = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('username') || ''),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      username = _React$useState4[0],
+      setUsername = _React$useState4[1];
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('userid') || ''),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      userid = _React$useState6[0],
+      setUserid = _React$useState6[1];
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      isLoading = _useState2[0],
+      setIsLoading = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("Loading..."),
+      _useState4 = _slicedToArray(_useState3, 2),
+      name = _useState4[0],
+      setName = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      accessToken = _useState6[0],
+      setAccessToken = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      shareLoading = _useState8[0],
+      setShareLoading = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      readPerm = _useState10[0],
+      setReadPerm = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      writePerm = _useState12[0],
+      setWritePerm = _useState12[1];
+
+  function validateForm() {
+    return isLoading || name.length < 3;
+  }
+
+  function copySharelink() {
+    navigator.clipboard.writeText("".concat(window.location.host, "/user/").concat(username, "/").concat(userid, "/tag/").concat(params.tagname, "/").concat(params.tagId, "/").concat(accessToken)).then(function () {}, function () {});
+  }
+
+  function tagSharelinkMake() {
+    setShareLoading(true);
+    fetch("http://" + window.location.host + "/api/sharelink/", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      body: JSON.stringify({
+        tagId: params.tagId
+      })
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setShareLoading(false);
+      setAccessToken(result.token);
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  function tagSharelinkDelete() {
+    setShareLoading(true);
+    fetch("http://" + window.location.host + "/api/sharelink/" + params.tagId, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setShareLoading(false);
+      setAccessToken("");
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.body.style.backgroundColor = "#2C2C33";
+    setIsLoading(true);
+    fetch("http://".concat(window.location.host, "/api/user/").concat(userid, "/tag/simple/").concat(params.tagId), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setName(result.tag.name);
+      setAccessToken(result.tag.access_token);
+      setIsLoading(false);
+    }, function (error) {
+      alert("error");
+    });
+  }, []);
+
+  function handleSubmit(event) {
+    setIsLoading(true);
+    event.preventDefault();
+    fetch("http://".concat(window.location.host, "/api/user/").concat(userid, "/tag/").concat(params.tagId), {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token //'Content-Type': 'application/x-www-form-urlencoded',
+
+      },
+      body: JSON.stringify({
+        name: name,
+        perm_read: readPerm,
+        perm_write: writePerm
+      })
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setIsLoading(false);
+      window.history.back();
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card text-light border-0",
+    style: {
+      backgroundColor: "#3B3B45"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mx-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-header row",
+    style: {
+      fontSize: "25px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center"
+  }, "Edit Tag")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container-fluid mt-3 mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], {
+    controlId: "name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormLabel"], null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormControl"], {
+    disabled: isLoading,
+    required: true,
+    autoFocus: true,
+    type: "text",
+    value: name,
+    onChange: function onChange(e) {
+      return setName(e.target.value);
+    },
+    className: "bg-theme3 border-0 text-white"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Sharelink"), accessToken !== "" && !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    disabled: true,
+    value: "../user/".concat(username, "/").concat(userid, "/tag/").concat(params.tagname, "/").concat(params.tagId, "/").concat(accessToken),
+    id: "sharelinkbox",
+    type: "text",
+    className: "form-control bg-theme3 border-0 text-white",
+    placeholder: "No Sharelink exists",
+    "aria-label": "Tg Name",
+    "aria-describedby": "basic-addon2"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group-append"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-primary",
+    type: "button",
+    onClick: copySharelink
+  }, "\uD83D\uDCCB Copy"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    disabled: shareLoading,
+    className: "btn btn-danger",
+    type: "button",
+    onClick: tagSharelinkDelete
+  }, "Delete Sharelink"))), accessToken === "" && !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    disabled: true,
+    id: "sharelinkbox",
+    type: "text",
+    className: "form-control bg-theme3 border-0 text-white",
+    placeholder: "No Sharelink exists",
+    "aria-label": "Tg Name",
+    "aria-describedby": "basic-addon2"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group-append"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    disabled: shareLoading,
+    className: "btn btn-success",
+    type: "button",
+    onClick: tagSharelinkMake
+  }, "Create Sharelink"))), isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    disabled: true,
+    id: "sharelinkbox",
+    type: "text",
+    className: "form-control bg-theme3 border-0 text-white",
+    placeholder: "Loading...",
+    "aria-label": "Tg Name",
+    "aria-describedby": "basic-addon2"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], {
+    controlId: "read_perm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormLabel"], null, "Who can view this tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormControl"], {
+    as: "select",
+    disabled: isLoading,
+    required: true,
+    value: readPerm,
+    onChange: function onChange(e) {
+      return setReadPerm(e.target.value);
+    },
+    className: "bg-theme3 border-0 text-white"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Only Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Anyone"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], {
+    controlId: "write_perm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormLabel"], null, "Who can add/remove links to this tag?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormControl"], {
+    as: "select",
+    disabled: isLoading,
+    required: true,
+    value: writePerm,
+    onChange: function onChange(e) {
+      return setWritePerm(e.target.value);
+    },
+    className: "bg-theme3 border-0 text-white"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Only Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Friends"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    block: true,
+    disabled: validateForm(),
+    type: "submit"
+  }, "Update Tag"))))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Newlink);
+
+/***/ }),
+
+/***/ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Friends.js":
+/*!**************************************************************************************************************!*\
+  !*** C:/Folders/Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Friends.js ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function Tags() {
+  var params = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])();
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      email = _useState2[0],
+      setEmail = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      password = _useState4[0],
+      setPassword = _useState4[1];
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('token') || ''),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      token = _React$useState2[0],
+      setToken = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('username') || ''),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      username = _React$useState4[0],
+      setUsername = _React$useState4[1];
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('userid') || ''),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      userid = _React$useState6[0],
+      setUserid = _React$useState6[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      friends = _useState6[0],
+      setFriends = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      friendsPending = _useState8[0],
+      setFriendsPending = _useState8[1];
+
+  function friendDelete(index, friendId) {
+    fetch("http://".concat(window.location.host, "/api/user/").concat(userid, "/friends/").concat(friendId), {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      friends.splice(index, 1);
+      setFriends(_toConsumableArray(friends));
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    //TODO: add accesstoken defaulting to empty string
+    document.body.style.backgroundColor = "#2C2C33";
+    fetch("http://".concat(window.location.host, "/api/user/").concat(userid, "/friends/"), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setFriends(_toConsumableArray(result.friends));
+      setFriendsPending(_toConsumableArray(result.friends_pending));
+    }, function (error) {
+      alert("error");
+    });
+  }, []);
+  var friendArr = [];
+
+  if (friends.length != 0) {
+    friends.map(function (friend, index) {
+      return friendArr.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+        key: index
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-10"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "h-100",
+        style: {
+          fontSize: "25px",
+          color: "white"
+        },
+        to: "/user/".concat(friend.username, "/").concat(friend.id, "/view")
+      }, friend.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-2 p-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "button",
+        className: "btn btn-danger btn-block float-right h-100 ml-4",
+        value: "Remove Friend",
+        onClick: function onClick() {
+          return friendDelete(index, friend.id);
+        }
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card text-light border-0",
+    style: {
+      backgroundColor: "#3B3B45"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mx-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-header row",
+    style: {
+      fontSize: "25px"
+    }
+  }, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container-fluid mt-5 mb-3"
+  }, friendArr), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Tags);
 
 /***/ }),
 
@@ -85906,7 +86407,7 @@ function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    fetch("http://localhost:8080/api/login", {
+    fetch("http://" + window.location.host + "/api/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json' //'Content-Type': 'application/x-www-form-urlencoded',
@@ -85925,7 +86426,7 @@ function Login() {
       localStorage.setItem('token', result.token);
       localStorage.setItem('username', result.username);
       localStorage.setItem('userid', result.userid);
-      window.location.replace("http://localhost:8080/user/me/me/tags");
+      window.location.replace(window.location.host + "/user/me/me/tags");
     }, function (error) {
       alert("error");
     });
@@ -86076,7 +86577,7 @@ function Newlink() {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     document.body.style.backgroundColor = "#2C2C33";
     setIsLoading(true);
-    fetch("http://localhost:8080/api/tags/" + userid, {
+    fetch("http://" + window.location.host + "/api/tags/" + userid, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -86085,7 +86586,7 @@ function Newlink() {
     }).then(function (res) {
       return res.json();
     }).then(function (result) {
-      setTags(result);
+      setTags(result.tags);
       setIsLoading(false);
     }, function (error) {
       alert("error");
@@ -86095,7 +86596,7 @@ function Newlink() {
   function handleSubmit(event) {
     setIsLoading(true);
     event.preventDefault();
-    fetch("http://localhost:8080/api/link", {
+    fetch("http://" + window.location.host + "/api/link", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -86261,7 +86762,7 @@ function Register() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    fetch("http://localhost:8080/api/register", {
+    fetch("http://" + window.location.host + "/api/register", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json' //'Content-Type': 'application/x-www-form-urlencoded',
@@ -86277,7 +86778,7 @@ function Register() {
     }).then(function (res) {
       return res.json();
     }).then(function (result) {
-      window.location.replace("http://localhost:8080/rlogin");
+      window.location.replace(window.location.host + "/login");
     }, function (error) {
       alert("error");
     });
@@ -86476,7 +86977,7 @@ function Tags() {
 
   function tagSharelinkMake() {
     setShareLoading(true);
-    fetch("http://localhost:8080/api/sharelink/", {
+    fetch("http://" + window.location.host + "/api/sharelink/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -86497,7 +86998,7 @@ function Tags() {
 
   function tagSharelinkDelete() {
     setShareLoading(true);
-    fetch("http://localhost:8080/api/sharelink/" + params.tagId, {
+    fetch("http://" + window.location.host + "/api/sharelink/" + params.tagId, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -86519,7 +87020,7 @@ function Tags() {
 
   function tagDelete() {
     //setTagDeleteLoading(true);
-    fetch("http://localhost:8080/api/user/" + params.userId + "/tag/" + params.tagId, {
+    fetch("http://" + window.location.host + "/api/user/" + params.userId + "/tag/full/" + params.tagId, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -86536,7 +87037,7 @@ function Tags() {
   }
 
   function linkDelete(index, linkId) {
-    fetch("http://localhost:8080/api/link/" + linkId + "/" + tagObjId, {
+    fetch("http://" + window.location.host + "/api/link/" + linkId + "/" + tagObjId, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -86556,7 +87057,7 @@ function Tags() {
     //TODO: add accesstoken defaulting to empty string
     document.body.style.backgroundColor = "#2C2C33";
     var tagPerm = params.tagPerm == undefined ? "" : params.tagPerm;
-    fetch("http://localhost:8080/api/user/" + params.userId + "/tag/" + params.tagId + "/" + tagPerm, {
+    fetch("http://" + window.location.host + "/api/user/" + params.userId + "/tag/full/" + params.tagId + "/" + tagPerm, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -86575,7 +87076,7 @@ function Tags() {
     }, function (error) {
       alert("error");
     });
-  }, []);
+  }, [params]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -86591,16 +87092,17 @@ function Tags() {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-8 p-0"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "col-8"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "h-100",
         style: {
-          fontSize: "20px",
-          color: "lightgray"
+          fontSize: "25px",
+          color: "white"
         },
-        href: link.link
-      }, link.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        to: link.link
+      }, link.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "col-2 p-0",
-        href: "http://localhost:8080/user/" + params.username + "/" + params.userId + "/editlink/" + params.tagname + "/" + params.tagId + "/" + link.name + "/" + link.id
+        to: "/user/" + params.username + "/" + params.userId + "/editlink/" + params.tagname + "/" + params.tagId + "/" + link.name + "/" + link.id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "button",
         className: "btn btn-secondary btn-block float-right h-100 mr-4",
@@ -86614,6 +87116,21 @@ function Tags() {
         onClick: function onClick() {
           return linkDelete(index, link.id);
         }
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row mt-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-7 bg-blue"
+      }, link.tags.map(function (tag, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+          key: index
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          className: "ml-0 mr-2 .d-inline-block bg-black",
+          style: {
+            fontSize: "14px",
+            color: "lightgray"
+          },
+          to: "/user/" + params.username + "/" + params.userId + "/tag/" + tag.name + "/" + tag.id
+        }, tag.name));
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
     });
   }
@@ -86640,8 +87157,8 @@ function Tags() {
     className: "col-4 text-center"
   }, "Links by Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-4 text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "http://localhost:8080/user/" + params.username + "/" + params.userId + "/tag/" + params.tagname + "/" + params.tagId
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/user/" + params.username + "/" + params.userId + "/tag/" + params.tagname + "/" + params.tagId
   }, tagObjName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-1 text-center"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -86659,8 +87176,8 @@ function Tags() {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), tagObjAccessToken != "" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-8 text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "http://localhost:8080/user/" + params.username + "/" + params.userId + "/tag/" + params.tagname + "/" + params.tagId + "/" + tagObjAccessToken
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/user/" + params.username + "/" + params.userId + "/tag/" + params.tagname + "/" + params.tagId + "/" + tagObjAccessToken
   }, ".../" + tagObjAccessToken)), tagObjAccessToken == "" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-8 text-center"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -86685,13 +87202,13 @@ function Tags() {
     className: "container-fluid mt-5 mb-3"
   }, linkArr), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container-fluid p-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "http://localhost:8080/user/" + params.username + "/" + params.userId + "/newlink",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/user/" + params.username + "/" + params.userId + "/newlink",
     className: "btn btn-success btn-block h-100 mr-4"
   }, "Add New Link")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container-fluid p-0 pt-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "http://localhost:8080/user/" + params.username + "/" + params.userId + "/tags",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/user/" + params.username + "/" + params.userId + "/tags",
     className: "btn btn-primary btn-block h-100 mr-4"
   }, "\u2190 Back to Tags")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))))));
 }
@@ -86711,9 +87228,10 @@ function Tags() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-bootstrap/esm/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -86727,6 +87245,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -86778,7 +87297,7 @@ function Tags() {
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     document.body.style.backgroundColor = "#2C2C33";
-    fetch("http://localhost:8080/api/tags/me/", {
+    fetch("http://" + window.location.host + "/api/tags/me/", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -86788,7 +87307,7 @@ function Tags() {
     }).then(function (res) {
       return res.json();
     }).then(function (result) {
-      setTags(result);
+      setTags(result.tags);
     }, function (error) {
       alert("error");
     });
@@ -86808,20 +87327,21 @@ function Tags() {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-8 p-0"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         style: {
           fontSize: "20px",
-          color: "lightgray"
+          color: "white"
         },
-        href: "http://localhost:8080/user/" + username + "/" + tag.user_id + "/tag/" + tag.name + "/" + tag.id
+        to: "/user/" + username + "/" + tag.user_id + "/tag/" + tag.name + "/" + tag.id
       }, tag.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-2 p-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/user/".concat(username, "/").concat(userid, "/edittag/").concat(tag.name, "/").concat(tag.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "button",
         className: "btn btn-secondary btn-block float-right h-100 mr-4",
-        value: "Edit Tag",
-        href: "localhost:8080/rtagedit/" + tag.name + "/" + tag.id
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        value: "Edit Tag"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-2 p-0"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "button",
@@ -86843,11 +87363,18 @@ function Tags() {
       backgroundColor: "#3B3B45"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "m-3"
+    className: "mx-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-header row",
+    style: {
+      fontSize: "25px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-4 text-center"
+  }, "Your Tags")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container-fluid"
-  }, tagArr), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: ""
+  }, tagArr), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: ""
   }, "Click here to add a new tag")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-group mb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -86993,6 +87520,280 @@ function Test() {
 if (document.getElementById('root')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Test, null), document.getElementById('root'));
 }
+
+/***/ }),
+
+/***/ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/View.js":
+/*!***********************************************************************************************************!*\
+  !*** C:/Folders/Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/View.js ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function Tags() {
+  var params = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])();
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      email = _useState2[0],
+      setEmail = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      password = _useState4[0],
+      setPassword = _useState4[1];
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('token') || ''),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      token = _React$useState2[0],
+      setToken = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('username') || ''),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      username = _React$useState4[0],
+      setUsername = _React$useState4[1];
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('userid') || ''),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      userid = _React$useState6[0],
+      setUserid = _React$useState6[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isLoading = _useState6[0],
+      setIsLoading = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      profileId = _useState8[0],
+      setProfileId = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      profileLoading = _useState10[0],
+      setProfileLoading = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState12 = _slicedToArray(_useState11, 2),
+      profileName = _useState12[0],
+      setProfileName = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      profileFriend = _useState14[0],
+      setProfileFriend = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      profilePendingTo = _useState16[0],
+      setProfilePendingTo = _useState16[1];
+
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState18 = _slicedToArray(_useState17, 2),
+      profilePendingFrom = _useState18[0],
+      setProfilePendingFrom = _useState18[1];
+
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState20 = _slicedToArray(_useState19, 2),
+      friendDeleteLoading = _useState20[0],
+      setFriendDeleteLoading = _useState20[1];
+
+  function friendDelete(index) {
+    setProfileLoading(true);
+    fetch("http://".concat(window.location.host, "/api/user/").concat(profileId), {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setProfileLoading(false);
+      setProfileFriend(false);
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  function friendRequestCreate(index) {
+    setProfileLoading(true);
+    fetch("http://".concat(window.location.host, "/api/user/").concat(profileId, "/add"), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setProfileLoading(false);
+      setProfilePendingFrom(true);
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  function friendRequestAccept(index) {
+    setProfileLoading(true);
+    fetch("http://".concat(window.location.host, "/api/user/").concat(profileId, "/request"), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setProfileLoading(false);
+      setProfileFriend(true);
+      setProfilePendingTo(false);
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  function friendRequestDelete(index) {
+    setProfileLoading(true);
+    fetch("http://".concat(window.location.host, "/api/user/").concat(profileId, "/request"), {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setProfileLoading(false);
+      setProfilePendingTo(false);
+      setProfilePendingFrom(false);
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    //TODO: add accesstoken defaulting to empty string
+    document.body.style.backgroundColor = "#2C2C33";
+    fetch("http://".concat(window.location.host, "/api/user/").concat(params.userId, "/details/"), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setProfileId(params.userId);
+      setProfileId(result.user.id);
+      setProfileName(result.user.username);
+
+      if (result.isfriend === true) {
+        setProfileFriend(true);
+      } else {
+        setProfileFriend(false);
+
+        if (result.pending === "from") {
+          setProfilePendingFrom(true);
+        } else if (result.pending === "to") {
+          setProfilePendingTo(true);
+        }
+      }
+
+      setIsLoading(false);
+    }, function (error) {
+      alert("error");
+    });
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card text-light border-0",
+    style: {
+      backgroundColor: "#3B3B45"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mx-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-header row",
+    style: {
+      fontSize: "25px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 text-center"
+  }, !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "float-left"
+  }, "".concat(profileName, "'s Profile")), isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "float-left"
+  }, "Loading Profile..")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3 text-center pr-0"
+  }, !isLoading && !profileFriend && profilePendingTo && !profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-success btn-block float-right h-100 ml-4",
+    value: "Accept Request",
+    onClick: friendRequestAccept,
+    disabled: profileLoading
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3 text-center pr-0"
+  }, !isLoading && profileFriend && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-danger btn-block float-right h-100 ml-4",
+    value: "Remove Friend",
+    onClick: friendDelete,
+    disabled: profileLoading
+  }), !isLoading && !profileFriend && !profilePendingTo && !profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-success btn-block float-right h-100 ml-4",
+    value: "Add Friend",
+    onClick: friendRequestCreate,
+    disabled: profileLoading
+  }), !isLoading && !profileFriend && !profilePendingTo && profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-danger btn-block float-right h-100 ml-4",
+    value: "Cancel Request",
+    onClick: friendRequestDelete,
+    disabled: profileLoading
+  }), !isLoading && !profileFriend && profilePendingTo && !profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-danger btn-block float-right h-100 ml-4",
+    value: "Deny Request",
+    onClick: friendRequestDelete,
+    disabled: profileLoading
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container-fluid mt-5 mb-3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Tags);
 
 /***/ }),
 

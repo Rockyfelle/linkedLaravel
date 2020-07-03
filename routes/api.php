@@ -26,18 +26,28 @@ Route::post('login', 'AuthController@login');
 
 //Only allow people with proper login token
 Route::middleware('auth:api')->group(function() {
-	Route::get('tags/{userId}/', 'TagsController@myTags');
+	Route::get('tags/{userId}/', 'TagsController@get');
 	
 	//New style per TODO.txt
+	Route::get('link/{linkId}/{tagId}/{userId}', 'LinkController@get');
 	Route::delete('link/{linkId}/{tagId}', 'LinkController@delete');
+	Route::put('link/{linkId}/{tagId}/{userId}', 'LinkController@update');
 	Route::post('link', 'LinkController@new');
-	Route::put('link', 'LinkController@update');
+
 	Route::delete('sharelink/{tagId}', 'ShareController@delete');
 	Route::post('sharelink', 'ShareController@new');
 
 	//Will only work for logged in users if uncommented
-	Route::get('user/{userId}/tag/{tagId}/{token?}', 'TagController@getAll');
+	Route::get('user/{userId}/tag/full/{tagId}/{token?}', 'TagController@getAll');
+	Route::get('user/{userId}/tag/simple/{tagId}/', 'TagController@get');
 	Route::delete('user/{userId}/tag/{tagId}/{token?}', 'TagController@delete');
+	Route::put('user/{userId}/tag/{tagId}', 'TagController@update');
+	Route::get('user/{userId}/friends', 'FriendsController@get');
+	Route::post('user/{userId}/add', 'FriendsController@add');
+	Route::post('user/{userId}/request', 'FriendsController@accept');
+	Route::delete('user/{userId}/request', 'FriendsController@deny');
+	Route::delete('user/{userId}', 'FriendsController@delete');
+	Route::get('user/{userId}/details', 'UserController@get');
 });
 
 //Allow users and guests

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import ReactDOM from 'react-dom';
 
@@ -34,7 +35,7 @@ function Tags() {
 
     useEffect(() => {
         document.body.style.backgroundColor = "#2C2C33";
-        fetch("http://localhost:8080/api/tags/me/", {
+        fetch("http://" + window.location.host + "/api/tags/me/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +46,7 @@ function Tags() {
             .then(res => res.json())
             .then(
                 (result) => {
-                    setTags(result);
+                    setTags(result.tags);
                 },
                 (error) => {
                     alert("error");
@@ -63,10 +64,12 @@ function Tags() {
             tagArr.push(<React.Fragment key={index}>
                 <div className="row">
                     <div className="col-8 p-0">
-                        <a style={{fontSize: "20px", color: "lightgray"}} href={"http://localhost:8080/user/" + username + "/" + tag.user_id + "/tag/" + tag.name + "/" + tag.id}>{tag.name}</a>
+                        <Link style={{fontSize: "20px", color: "white"}} to={"/user/" + username + "/" + tag.user_id + "/tag/" + tag.name + "/" + tag.id}>{tag.name}</Link>
                     </div>
                     <div className="col-2 p-0">
-                        <input type="button" className="btn btn-secondary btn-block float-right h-100 mr-4" value="Edit Tag" href={"localhost:8080/rtagedit/" + tag.name + "/" + tag.id}/>
+						<Link to={`/user/${username}/${userid}/edittag/${tag.name}/${tag.id}`}>
+                        	<input type="button" className="btn btn-secondary btn-block float-right h-100 mr-4" value="Edit Tag" />
+						</Link>
                     </div>
                     <div className="col-2 p-0">
                         <input type="button" className="btn btn-danger btn-block float-right h-100 ml-4" value="Delete Tag" />
@@ -83,13 +86,18 @@ function Tags() {
                 <div className="row justify-content-center">
                     <div className="col-md-8">
                         <div className="card text-light border-0" style={{backgroundColor: "#3B3B45"}}>
-                            <div className="m-3">
+                            <div className="mx-3">
+								<div className="card-header row" style={{ fontSize: "25px" }}>
+									<div className="col-4 text-center">
+											Your Tags
+									</div>
+								</div>
                                 <div className="container-fluid">
                                     {tagArr}
                                 </div>
                                 <br />
                                 <div>
-                                    <a href="">Click here to add a new tag</a>
+                                    <Link to="">Click here to add a new tag</Link>
                                 </div>
                                 <div className="input-group mb-3">
                                     <input id="tagname" type="text" className="form-control bg-theme3 border-0 text-white" placeholder="Tag Name" aria-label="Tg Name" aria-describedby="basic-addon2" />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Button, FormGroup, FormControl, FormLabel, withRouter } from "react-bootstrap";
 import ReactDOM from 'react-dom';
 
@@ -42,7 +42,7 @@ function Tags() {
 
 	function tagSharelinkMake() {
 		setShareLoading(true);
-		fetch("http://localhost:8080/api/sharelink/", {
+		fetch("http://" + window.location.host + "/api/sharelink/", {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ function Tags() {
 
 	function tagSharelinkDelete() {
 		setShareLoading(true);
-		fetch("http://localhost:8080/api/sharelink/" + params.tagId, {
+		fetch("http://" + window.location.host + "/api/sharelink/" + params.tagId, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ function Tags() {
 
 	function tagDelete() {
 		//setTagDeleteLoading(true);
-		fetch("http://localhost:8080/api/user/" + params.userId + "/tag/" + params.tagId, {
+		fetch("http://" + window.location.host + "/api/user/" + params.userId + "/tag/full/" + params.tagId, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ function Tags() {
 	}
 
 	function linkDelete(index, linkId) {
-		fetch("http://localhost:8080/api/link/" + linkId + "/" + tagObjId, {
+		fetch("http://" + window.location.host + "/api/link/" + linkId + "/" + tagObjId, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ function Tags() {
 	useEffect(() => {	//TODO: add accesstoken defaulting to empty string
 		document.body.style.backgroundColor = "#2C2C33";
 		let tagPerm = (params.tagPerm == undefined) ? "" : params.tagPerm;
-		fetch("http://localhost:8080/api/user/" + params.userId + "/tag/" + params.tagId + "/" + tagPerm, {
+		fetch("http://" + window.location.host + "/api/user/" + params.userId + "/tag/full/" + params.tagId + "/" + tagPerm, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ function Tags() {
 					alert("error");
 				}
 			);
-	}, []);
+	}, [params]);
 
 	function handleSubmit(event) {
 		event.preventDefault();
@@ -164,14 +164,21 @@ function Tags() {
 		linksArr.map((link, index) => (
 			linkArr.push(<React.Fragment key={index}>
 				<div className="row">
-					<div className="col-8 p-0">
-						<a style={{ fontSize: "20px", color: "lightgray" }} href={link.link}>{link.name}</a>
+					<div className="col-8">
+						<Link className="h-100" style={{ fontSize: "25px", color: "white" }} to={link.link}>{link.name}</Link>
 					</div>
-					<a className="col-2 p-0" href={"http://localhost:8080/user/" + params.username + "/" + params.userId + "/editlink/" + params.tagname + "/" + params.tagId + "/" + link.name + "/" + link.id}>
+					<Link className="col-2 p-0" to={"/user/" + params.username + "/" + params.userId + "/editlink/" + params.tagname + "/" + params.tagId + "/" + link.name + "/" + link.id}>
 						<input type="button" className="btn btn-secondary btn-block float-right h-100 mr-4" value="Edit Link"  />
-					</a>
+					</Link>
 					<div className="col-2 p-0">
 						<input type="button" className="btn btn-danger btn-block float-right h-100 ml-4" value="Delete Link" onClick={() => linkDelete(index, link.id)}/>
+					</div>
+				</div>
+				<div className="row mt-0">
+					<div className="col-7 bg-blue">
+						{link.tags.map((tag, index) => (<React.Fragment key={index}>
+							<Link className="ml-0 mr-2 .d-inline-block bg-black" style={{ fontSize: "14px", color: "lightgray" }} to={"/user/"  + params.username + "/" + params.userId + "/tag/" + tag.name + "/" + tag.id}>{tag.name}</Link>
+							</React.Fragment>))}
 					</div>
 				</div>
 				<br />
@@ -189,9 +196,9 @@ function Tags() {
 									<div className="card-header row" style={{ fontSize: "25px" }}>
 										<div className="col-4 text-center">
 											Links by Tag
-									</div>
+										</div>
 										<div className="col-4 text-center">
-											<a href={"http://localhost:8080/user/" + params.username + "/" + params.userId + "/tag/" + params.tagname + "/" + params.tagId} >{tagObjName}</a>
+											<Link to={"/user/" + params.username + "/" + params.userId + "/tag/" + params.tagname + "/" + params.tagId} >{tagObjName}</Link>
 										</div>
 										<div className="col-1 text-center">
 										</div>
@@ -203,7 +210,7 @@ function Tags() {
 										<br />
 										{tagObjAccessToken != "" &&
 											<div className="col-8 text-center">
-												<a href={"http://localhost:8080/user/" + params.username + "/" + params.userId + "/tag/" + params.tagname + "/" + params.tagId + "/" + tagObjAccessToken}>{".../" + tagObjAccessToken}</a>
+												<Link to={"/user/" + params.username + "/" + params.userId + "/tag/" + params.tagname + "/" + params.tagId + "/" + tagObjAccessToken}>{".../" + tagObjAccessToken}</Link>
 											</div>
 										}
 										{tagObjAccessToken == "" &&
@@ -227,10 +234,10 @@ function Tags() {
 										{linkArr}
 									</div>
 									<div className="container-fluid p-0">
-										<a href={"http://localhost:8080/user/" + params.username + "/" + params.userId + "/newlink"} className="btn btn-success btn-block h-100 mr-4">Add New Link</a>
+										<Link to={"/user/" + params.username + "/" + params.userId + "/newlink"} className="btn btn-success btn-block h-100 mr-4">Add New Link</Link>
 									</div>
 									<div className="container-fluid p-0 pt-4">
-										<a href={"http://localhost:8080/user/" + params.username + "/" + params.userId + "/tags"} className="btn btn-primary btn-block h-100 mr-4">← Back to Tags</a>
+										<Link to={"/user/" + params.username + "/" + params.userId + "/tags"} className="btn btn-primary btn-block h-100 mr-4">← Back to Tags</Link>
 									</div>
 									<br />
 								</div>

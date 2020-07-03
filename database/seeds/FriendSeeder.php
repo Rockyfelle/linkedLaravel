@@ -12,13 +12,21 @@ class FriendSeeder extends Seeder
     public function run()
     {
         DB::table('friends')->insert([
-            'user_id_1' => '4',
-            'user_id_2' => '5',
+            'user_id_1' => '1',
+			'user_id_2' => '2',
+			'pending' => false,
         ]);
 
         DB::table('friends')->insert([
-            'user_id_1' => '5',
-            'user_id_2' => '4',
+            'user_id_1' => '2',
+			'user_id_2' => '1',
+			'pending' => false,
+		]);
+		
+		DB::table('friends')->insert([
+            'user_id_1' => '3',
+			'user_id_2' => '1',
+			'pending' => true,
         ]);
     }
 }

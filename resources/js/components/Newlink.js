@@ -35,7 +35,7 @@ function Newlink() {
 		document.body.style.backgroundColor = "#2C2C33";
 		setIsLoading(true);
 
-        fetch("http://localhost:8080/api/tags/" + userid, {
+        fetch("http://" + window.location.host + "/api/tags/" + userid, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ function Newlink() {
             .then(res => res.json())
             .then(
                 (result) => {
-					setTags(result);
+					setTags(result.tags);
 					setIsLoading(false);
                 },
                 (error) => {
@@ -57,7 +57,7 @@ function Newlink() {
     function handleSubmit(event) {
 		setIsLoading(true);
 		event.preventDefault();
-		fetch("http://localhost:8080/api/link", {
+		fetch("http://" + window.location.host + "/api/link", {
             method: 'POST',
             headers: {
 				'Content-Type': 'application/json',

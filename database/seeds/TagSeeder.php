@@ -12,7 +12,8 @@ class TagSeeder extends Seeder
     public function run()
     {
         DB::table('tags')->insert([
-            'user_id' => '4',
+			'id' => '1',
+            'user_id' => '1',
             'name' => 'privateTag',
             'perm_read' => 'private',
             'perm_write' => 'private',
@@ -20,7 +21,8 @@ class TagSeeder extends Seeder
         ]);
 
         DB::table('tags')->insert([
-            'user_id' => '4',
+			'id' => '2',
+            'user_id' => '1',
             'name' => 'publicTag',
             'perm_read' => 'public',
             'perm_write' => 'private',
@@ -28,7 +30,8 @@ class TagSeeder extends Seeder
         ]);
 
         DB::table('tags')->insert([
-            'user_id' => '4',
+			'id' => '3',
+            'user_id' => '1',
             'name' => 'friendTag',
             'perm_read' => 'friends',
             'perm_write' => 'private',
@@ -36,7 +39,8 @@ class TagSeeder extends Seeder
         ]);
 
         DB::table('tags')->insert([
-            'user_id' => '4',
+			'id' => '4',
+            'user_id' => '1',
             'name' => 'privateLinkTag',
             'perm_read' => 'private',
             'perm_write' => 'private',
@@ -44,7 +48,8 @@ class TagSeeder extends Seeder
         ]);
 
         DB::table('tags')->insert([
-            'user_id' => '4',
+			'id' => '5',
+            'user_id' => '1',
             'name' => 'friendWriteFriendTag',
             'perm_read' => 'friends',
             'perm_write' => 'friends',
@@ -52,7 +57,8 @@ class TagSeeder extends Seeder
         ]);
 
         DB::table('tags')->insert([
-            'user_id' => '4',
+			'id' => '6',
+            'user_id' => '1',
             'name' => 'publicWriteWhitelist',
             'perm_read' => 'public',
             'perm_write' => 'private',
@@ -60,7 +66,8 @@ class TagSeeder extends Seeder
         ]);
 
         DB::table('tags')->insert([
-            'user_id' => '4',
+			'id' => '7',
+            'user_id' => '1',
             'name' => 'whiteListTag',
             'perm_read' => 'private',
             'perm_write' => 'private',

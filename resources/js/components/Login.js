@@ -19,7 +19,7 @@ function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        fetch("http://localhost:8080/api/login", {
+        fetch("http://" + window.location.host + "/api/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ function Login() {
 					localStorage.setItem('token', result.token);
 					localStorage.setItem('username', result.username);
 					localStorage.setItem('userid', result.userid);
-					window.location.replace("http://localhost:8080/user/me/me/tags");
+					window.location.replace(window.location.host + "/user/me/me/tags");
                 },
                 (error) => {
                     alert("error");

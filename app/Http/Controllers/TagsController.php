@@ -9,10 +9,50 @@ use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
-    public function myTags(Request $request, $userId)
+    public function get(Request $request, $userId)
     {
-        $tags = DB::table('tags')->where('user_id', Auth::id())->get();
+		//Check if user is logged in
+		if (Auth::check()) {
+			
+			//Check if user is asking for their own tags
+			if ($request->userId == "me" || $request->userId == Auth::id()) {
 
-        return response()->json($tags);
+				$tags = DB::table('tags')->select('id', 'user_id', 'name', 'perm_read', 'perm_write', 'access_token')->where('user_id', Auth::id())->get();
+				$visibility = DB::table('users')->select('tagvisibility')->where('id', Auth::id())->pluck('tagvisibility');
+				return ['status' => 'success', 'visibility' => $visibility[0], 'tags' => $tags];
+			}
+
+			//Check if requested user exists
+			if (DB::table('users')->where('id', $userId)->exists()) {
+
+				//Check if requested user has their tag visibility set to friends
+				if (DB::table('users')->where('id', $userId)->where('tagvisibility', 'friends')->exists()) {
+
+					$tags = DB::table('tags')->select('id', 'user_id', 'name', 'perm_read', 'perm_write', 'access_token')->where('user_id', $userId)->get();
+					return ['status' => 'success', 'visibility' => 'friends', 'tags' => $tags];
+				}
+			}
+		}
+
+		//Check if requested user exists
+		if (DB::table('users')->where('id', $userId)->exists()) {
+
+			//Check if requested user has their tag visibility set to public
+			if (DB::table('users')->where('id', $userId)->where('tagvisibility', 'public')->exists()) {
+
+				$tags = DB::table('tags')->select('id', 'user_id', 'name', 'perm_read', 'perm_write', 'access_token')->where('user_id', $userId)->get();
+				return ['visibility' => 'public', 'tags' => $tags];
+			}
+
+			//No access route found, report information on user
+			$visibility = DB::table('users')->select('tagvisibility')->where('id', Auth::id())->pluck('tagvisibility');
+			return ['status' => 'no_visibility', 'visibility' => $visibility[0]];
+		}
+
+		//User not found, report information
+		$visibility = DB::table('users')->select('tagvisibility')->where('id', Auth::id())->pluck('tagvisibility');
+		return ['status' => 'no_user'];
+
+        
     }
 }

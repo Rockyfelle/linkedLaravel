@@ -13,14 +13,14 @@ class WhitelistSeeder extends Seeder
     {
         DB::table('whitelist')->insert([
             'tag_id' => '6',
-            'user_id' => '5',
+            'user_id' => '2',
             'perm_read' => '0',
             'perm_write' => '1',
         ]);
 
         DB::table('whitelist')->insert([
             'tag_id' => '7',
-            'user_id' => '5',
+            'user_id' => '2',
             'perm_read' => '1',
             'perm_write' => '0',
         ]);
