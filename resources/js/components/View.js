@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from 'react-router-dom';
 import { Button, FormGroup, FormControl, FormLabel, withRouter } from "react-bootstrap";
 import ReactDOM from 'react-dom';
+import TagsDiv from './TagsDiv';
 
 function Tags() {
 	const params = useParams();
@@ -229,7 +230,7 @@ function Tags() {
 										
 									</div>
 									<div className="container-fluid mt-5 mb-3">
-										<Link to={`/user/${params.username}/${params.userId}/tags`}>Click here to view this users tags</Link>
+										{TagsDiv()}
 									</div>
 									<br />
 								</div>
