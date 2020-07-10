@@ -39,27 +39,27 @@ function TagsDiv() {
                     alert("error");
                 }
             );
-      }, []);
+	}, []);
 
     function handleSubmit(event) {
         event.preventDefault();
     }
 
-    var tagArr = []
+    var tagArr = [];
     if (tags.length != 0) {
         tags.map((tag, index) => (
             tagArr.push(<React.Fragment key={index}>
                 <div className="row">
                     <div className="col-8 p-0">
-                        <Link style={{fontSize: "20px", color: "white"}} to={"/user/" + username + "/" + tag.user_id + "/tag/" + tag.name + "/" + tag.id}>{tag.name}</Link>
+                        <Link style={{fontSize: "20px", color: "white"}} to={"/user/" + username + "/" + tag.user_id + "/tag/" + tag.name + "/" + tag.id}>{tag.name} <sup>({tag.perm_read})</sup></Link>
                     </div>
                     <div className="col-2 p-0">
 						<Link to={`/user/${username}/${userid}/edittag/${tag.name}/${tag.id}`}>
-                        	<input type="button" className="btn btn-secondary btn-block float-right h-100 mr-4" value="Edit Tag" />
+                        	<input type="button" className="btn btn-secondary btn-block float-right h-100 mr-4 shadow-sm" value="Edit Tag" />
 						</Link>
                     </div>
                     <div className="col-2 p-0">
-                        <input type="button" className="btn btn-danger btn-block float-right h-100 ml-4" value="Delete Tag" />
+                        <input type="button" className="btn btn-danger btn-block float-right h-100 ml-4 shadow-sm" value="Delete Tag" />
                     </div>
                 </div>
                 <br />

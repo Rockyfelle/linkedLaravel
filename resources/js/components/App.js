@@ -11,6 +11,7 @@ import Editlink from './Editlink'
 import Edittag from './Edittag'
 import Friends from './Friends'
 import View from './View'
+import NewTags from './NewTags'
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -43,8 +44,7 @@ function App() {
 						</button>
 
 						<div className="collapse navbar-collapse" id="navbarSupportedContent">
-							<ul className="navbar-nav mr-auto">
-							</ul>
+
 								<ul className="navbar-nav ml-auto" style={{float: "right"}}>
 									{(token == "") &&
 										<React.Fragment>
@@ -65,7 +65,7 @@ function App() {
 												<Link className="nav-link text-light" to={"/user/" + username + "/" + userid + "/friends/"}>Friends</Link>
 											</li>
 											<li className="nav-item">
-												<Link className="nav-link text-light" to={"/user/" + username + "/" + userid}>{username}</Link>
+												<Link className="nav-link text-light" to={"/user/" + username + "/" + userid + "/view"}>{username}</Link>
 											</li>
 											<li className="nav-item">
 												<Link className="nav-link text-light" to={"/login"}>Logout</Link>
@@ -83,13 +83,14 @@ function App() {
 							<Route path="/test" component={Test} />
 							<Route path="/login" component={Login} />
 							<Route path="/register" component={Register} />
-							<Route path="/user/:username/:userid/tags" component={Tags} />
+							<Route path="/user/:username/:userId/tags" component={Tags} />
 							<Route path="/user/:username/:userId/tag/:tagname/:tagId/:tagPerm?" component={Tag} />
 							<Route path="/user/:username/:userId/newlink" component={Newlink} />
 							<Route path="/user/:username/:userId/editlink/:tagname/:tagId/:linkname/:linkId" component={Editlink} />
 							<Route path="/user/:username/:userId/edittag/:tagname/:tagId/" component={Edittag} />
 							<Route path="/user/:username/:userId/friends" component={Friends} />
 							<Route path="/user/:username/:userId/view" component={View} />
+							<Route path="/user/:username/:userId/xtag/:tagname/:tagId/:tagPerm?" component={NewTags} />
 							<Route component={Error} />
 						</Switch>
 				</div>

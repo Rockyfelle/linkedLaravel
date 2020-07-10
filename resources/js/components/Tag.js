@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from 'react-router-dom';
 import { Button, FormGroup, FormControl, FormLabel, withRouter } from "react-bootstrap";
 import ReactDOM from 'react-dom';
+import TagDiv from './TagDiv';
 
 function Tags() {
 	const params = useParams();
@@ -231,7 +232,7 @@ function Tags() {
 										}
 									</div>
 									<div className="container-fluid mt-5 mb-3">
-										{linkArr}
+										{TagDiv()}
 									</div>
 									<div className="container-fluid p-0">
 										<Link to={"/user/" + params.username + "/" + params.userId + "/newlink"} className="btn btn-success btn-block h-100 mr-4">Add New Link</Link>

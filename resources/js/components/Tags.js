@@ -42,7 +42,9 @@ function Tags() {
 											Your Tags
 									</div>
 								</div>
-								{TagsDiv()}
+								<div className="container-fluid mt-5 mb-3">
+									{TagsDiv()}
+								</div>
                                 <br />
                                 <div>
                                     <Link to="">Click here to add a new tag</Link>
