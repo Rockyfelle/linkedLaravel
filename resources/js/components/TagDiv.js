@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Button, Form, FormGroup, FormControl, FormLabel, withRouter } from "react-bootstrap";
 import ReactDOM from 'react-dom';
 
-function TagDiv() {
+function TagDiv(props) {
 	const params = useParams();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -17,11 +17,10 @@ function TagDiv() {
 		localStorage.getItem('userid') || ''
 	);
 	const [linksArr, setLinksArr] = useState([]);
-	const [tagObjId, setTagObjId] = useState("");
 	const [linksLoading, setLinksLoading] = useState(true);
 
 	function linkDelete(index, linkId) {
-		fetch("http://" + window.location.host + "/api/link/" + linkId + "/" + tagObjId, {
+		fetch("http://" + window.location.host + "/api/link/" + linkId + "/" + params.tagId, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -41,7 +40,7 @@ function TagDiv() {
 	}
 
 	useEffect(() => {	//TODO: add accesstoken defaulting to empty string
-		document.body.style.backgroundColor = "#2C2C33";
+		document.body.style.backgroundColor = "#2C2C33";console.log("test");
 		let tagPerm = (params.tagPerm == undefined) ? "" : params.tagPerm;
 		fetch("http://" + window.location.host + "/api/user/" + params.userId + "/tag/full/" + params.tagId + "/" + tagPerm, {
 			method: 'GET',
@@ -59,8 +58,8 @@ function TagDiv() {
 				(error) => {
 					alert("error");
 				}
-			);
-	}, [params]);
+			);console.log("TagList Update");
+	}, [params, props.makeUpdate]);
 
 	//TODO: Add a way to quickly remove a link from current tag instead of deleting it wholly
 	var linkArr = []
@@ -93,12 +92,15 @@ function TagDiv() {
 	return (
 
 		<React.Fragment>
-			<div className="container-fluid">
+			<div className="container-fluid text-light">
 				{!linksLoading && linkArr.length > 0 &&
 					linkArr
 				}
 				{!linksLoading && linkArr.length === 0 &&
-					<center><h2>This user has no tags, or the tags visibility is set to private</h2></center>
+					<center><h2>This tag is empty, or you do not have permission to view this tag</h2></center>
+				}
+				{linksLoading &&
+					<center><h2>Loading links...</h2></center>
 				}
 			</div>
 		</React.Fragment>

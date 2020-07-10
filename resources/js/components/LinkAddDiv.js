@@ -22,12 +22,13 @@ function TagDiv(props) {
 	const [tags, setTags] = useState([]);
 	const [selectedTags, setSelectedTags] = useState([]);
 	const [preChecked, setPreChecked] = useState(props.testing);
+	const [callParent, setCallParent] = useState(null);
 
 	function validateForm() {
 		return (isLoading || (selectedTags.length < 1) || (name.length < 1) || (link.length < 1));
 	}
 
-	function updateSelectedTags(e, tagid) {setPreChecked([33]);
+	function updateSelectedTags(e, tagid) {
 		if (e.target.checked) {
 			if (selectedTags.indexOf(tagid) === -1) selectedTags.push(tagid);
 			setSelectedTags([...selectedTags]);
@@ -66,8 +67,8 @@ function TagDiv(props) {
                 (error) => {
                     alert("error");
                 }
-            );
-	}, []);
+            );console.log("LinkMaker Update");
+	}, [callParent]);
 	  
 	function handleSubmit(event) {
 		setIsLoading(true);
@@ -87,6 +88,8 @@ function TagDiv(props) {
 					setName("");
 					setLink("");
 					setIsLoading(false);
+					//Update parent and siblings
+					props.setData([...[]]);
 				},
 				(error) => {
 					alert("error");
@@ -119,7 +122,6 @@ function TagDiv(props) {
 						<FormLabel>Name</FormLabel>
 						<FormControl
 							required
-							autoFocus
 							type="text"
 							value={name}
 							onChange={e => setName(e.target.value)}

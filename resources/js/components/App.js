@@ -4,14 +4,14 @@ import { BrowserRouter as Router, Route, Switch, Link, useParams} from 'react-ro
 import Test from './Test'
 import Login from './Login'
 import Register from './Register'
-import Tags from './Tags'
-import Tag from './Tag'
+import oldTags from './oldTags'
+import oldTag from './oldTag'
 import Newlink from './Newlink'
 import Editlink from './Editlink'
 import Edittag from './Edittag'
 import Friends from './Friends'
 import View from './View'
-import NewTags from './NewTags'
+import Tag from './Tag'
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -35,7 +35,7 @@ function App() {
         <Router>
 			<div id="app">
 				<nav className="navbar navbar-expand-md navbar-light bg-dark shadow-sm p-0">
-					<div className="container m-0">
+					<div className="container m-0 min-vw-100">
 						<Link className="navbar-brand text-light" to={`/user/${username}/${userid}/tags`} style={{fontSize: "30px"}}>
 							Linked
 						</Link>
@@ -79,18 +79,18 @@ function App() {
 
 				<div className="py-4">
 						<Switch>
-							<Route path="/" component={Tags} exact />
+							<Route path="/" component={View} exact />
 							<Route path="/test" component={Test} />
 							<Route path="/login" component={Login} />
 							<Route path="/register" component={Register} />
-							<Route path="/user/:username/:userId/tags" component={Tags} />
-							<Route path="/user/:username/:userId/tag/:tagname/:tagId/:tagPerm?" component={Tag} />
+							<Route path="/user/:username/:userId/oldtags" component={oldTags} />
+							<Route path="/user/:username/:userId/oldtag/:tagname/:tagId/:tagPerm?" component={oldTag} />
 							<Route path="/user/:username/:userId/newlink" component={Newlink} />
 							<Route path="/user/:username/:userId/editlink/:tagname/:tagId/:linkname/:linkId" component={Editlink} />
 							<Route path="/user/:username/:userId/edittag/:tagname/:tagId/" component={Edittag} />
 							<Route path="/user/:username/:userId/friends" component={Friends} />
 							<Route path="/user/:username/:userId/view" component={View} />
-							<Route path="/user/:username/:userId/xtag/:tagname/:tagId/:tagPerm?" component={NewTags} />
+							<Route path="/user/:username/:userId/tag/:tagname/:tagId/:tagPerm?" component={Tag} />
 							<Route component={Error} />
 						</Switch>
 				</div>
