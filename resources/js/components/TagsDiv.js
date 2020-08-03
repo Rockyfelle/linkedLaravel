@@ -18,6 +18,7 @@ function TagsDiv() {
     );
 	const [tags, setTags] = useState([]);
 	const [tagsLoading, setTagsLoading] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
 	
     useEffect(() => {
         document.body.style.backgroundColor = "#2C2C33";
@@ -32,8 +33,12 @@ function TagsDiv() {
             .then(res => res.json())
             .then(
                 (result) => {
-					setTags(result.tags);
 					setTagsLoading(false);
+					if (result.status === "success") {
+						setTags(result.tags);
+					} else {
+						setErrorMessage(result.message);
+					}
                 },
                 (error) => {
                     alert("error");
@@ -41,9 +46,25 @@ function TagsDiv() {
             );
 	}, []);
 
-    function handleSubmit(event) {
-        event.preventDefault();
-    }
+	function tagDelete(index, tagId) {
+		fetch(`http://${window.location.host}/api/user/${params.userId}/tag/${tagId}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token,
+			}
+		})
+			.then(res => res.json())
+			.then(
+				(result) => {
+					tags.splice(index, 1);
+					setTags([...tags]);
+				},
+				(error) => {
+					alert("error");
+				}
+			);
+	}
 
     var tagArr = [];
     if (tags.length != 0) {
@@ -59,7 +80,7 @@ function TagsDiv() {
 						</Link>
                     </div>
                     <div className="col-2 p-0">
-                        <input type="button" className="btn btn-danger btn-block float-right h-100 ml-4 shadow-sm" value="Delete Tag" />
+                        <input type="button" className="btn btn-danger btn-block float-right h-100 ml-4 shadow-sm" value="Delete Tag" onClick={() => tagDelete(index, tag.id)}/>
                     </div>
                 </div>
                 <br />
@@ -69,11 +90,14 @@ function TagsDiv() {
 	
 	return (
 		<div className="container-fluid">
-			{!tagsLoading && tagArr.length > 0 &&
+			{!tagsLoading && tagArr.length > 0 && errorMessage === "" &&
 				tagArr
 			}
-			{!tagsLoading && tagArr.length === 0 &&
-				<center><h2>This user has no tags, or the tags visibility is set to private</h2></center>
+			{!tagsLoading && tagArr.length === 0 && errorMessage === "" &&
+				<center><h2 className="text-white">This user has no tags yet.</h2></center>
+			}
+			{!tagsLoading && errorMessage &&
+				<center><h2 className="text-white">{errorMessage}</h2></center>
 			}
 		</div>
 );

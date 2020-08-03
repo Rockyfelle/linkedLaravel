@@ -85479,10 +85479,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Editlink__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Editlink */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Editlink.js");
 /* harmony import */ var _Edittag__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Edittag */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Edittag.js");
 /* harmony import */ var _Friends__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Friends */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Friends.js");
-/* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./View */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/View.js");
+/* harmony import */ var _oldView__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./oldView */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/oldView.js");
 /* harmony import */ var _Tag__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Tag */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/Tag.js");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/bootstrap/dist/css/bootstrap.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./View */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/View.js");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_15__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -85494,6 +85495,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -85598,7 +85600,7 @@ function App() {
     className: "py-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/",
-    component: _View__WEBPACK_IMPORTED_MODULE_12__["default"],
+    component: _View__WEBPACK_IMPORTED_MODULE_14__["default"],
     exact: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/test",
@@ -85628,8 +85630,11 @@ function App() {
     path: "/user/:username/:userId/friends",
     component: _Friends__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/user/:username/:userId/oldview",
+    component: _oldView__WEBPACK_IMPORTED_MODULE_12__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/user/:username/:userId/view",
-    component: _View__WEBPACK_IMPORTED_MODULE_12__["default"]
+    component: _View__WEBPACK_IMPORTED_MODULE_14__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/user/:username/:userId/tag/:tagname/:tagId/:tagPerm?",
     component: _Tag__WEBPACK_IMPORTED_MODULE_13__["default"]
@@ -86637,8 +86642,18 @@ function Login() {
       userid = _useState10[0],
       setUserid = _useState10[1];
 
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState12 = _slicedToArray(_useState11, 2),
+      loginError = _useState12[0],
+      setLoginError = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      loginLoading = _useState14[0],
+      setLoginLoading = _useState14[1];
+
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return email.length > 5 && password.length > 7 && !loginLoading;
   }
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -86646,6 +86661,8 @@ function Login() {
   }, []);
 
   function handleSubmit(event) {
+    setLoginError("");
+    setLoginLoading(true);
     event.preventDefault();
     fetch("http://" + window.location.host + "/api/login", {
       method: 'POST',
@@ -86660,13 +86677,19 @@ function Login() {
     }).then(function (res) {
       return res.json();
     }).then(function (result) {
-      setToken(result.token);
-      setUsername(result.username);
-      setUserid(result.userid);
-      localStorage.setItem('token', result.token);
-      localStorage.setItem('username', result.username);
-      localStorage.setItem('userid', result.userid);
-      window.location.replace(window.location.host + "/user/me/me/tags");
+      setLoginLoading(false);
+
+      if (result.status === 'success') {
+        setToken(result.token);
+        setUsername(result.username);
+        setUserid(result.userid);
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('username', result.username);
+        localStorage.setItem('userid', result.userid);
+        window.location.replace("http://".concat(window.location.host, "/user/").concat(result.username, "/").concat(result.userid, "/view"));
+      } else {
+        setLoginError(result.errormessage);
+      }
     }, function (error) {
       alert("error");
     });
@@ -86713,7 +86736,11 @@ function Login() {
     },
     type: "password",
     className: "bg-theme3 border-0 text-white"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+  })), loginError && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "text-danger"
+  }, loginError)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     block: true,
     disabled: !validateForm(),
     type: "submit"
@@ -87429,6 +87456,272 @@ function Tag() {
 
 /***/ }),
 
+/***/ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/TagAddDiv.js":
+/*!****************************************************************************************************************!*\
+  !*** C:/Folders/Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/TagAddDiv.js ***!
+  \****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function TagDiv(props) {
+  var params = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])();
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      email = _useState2[0],
+      setEmail = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      password = _useState4[0],
+      setPassword = _useState4[1];
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('token') || ''),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      token = _React$useState2[0],
+      setToken = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('username') || ''),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      username = _React$useState4[0],
+      setUsername = _React$useState4[1];
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('userid') || ''),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      userid = _React$useState6[0],
+      setUserid = _React$useState6[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isLoading = _useState6[0],
+      setIsLoading = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      name = _useState8[0],
+      setName = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState10 = _slicedToArray(_useState9, 2),
+      link = _useState10[0],
+      setLink = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState12 = _slicedToArray(_useState11, 2),
+      tags = _useState12[0],
+      setTags = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState14 = _slicedToArray(_useState13, 2),
+      selectedTags = _useState14[0],
+      setSelectedTags = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.testing),
+      _useState16 = _slicedToArray(_useState15, 2),
+      preChecked = _useState16[0],
+      setPreChecked = _useState16[1];
+
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState18 = _slicedToArray(_useState17, 2),
+      callParent = _useState18[0],
+      setCallParent = _useState18[1];
+
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("private"),
+      _useState20 = _slicedToArray(_useState19, 2),
+      permRead = _useState20[0],
+      setPermRead = _useState20[1];
+
+  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("private"),
+      _useState22 = _slicedToArray(_useState21, 2),
+      permWrite = _useState22[0],
+      setPermWrite = _useState22[1];
+
+  function validateForm() {
+    return isLoading || name.length < 1;
+  }
+
+  function updateSelectedTags(e, tagid) {
+    if (e.target.checked) {
+      if (selectedTags.indexOf(tagid) === -1) selectedTags.push(tagid);
+      setSelectedTags(_toConsumableArray(selectedTags));
+      tags.find(function (x) {
+        return x.id === tagid;
+      }).isChecked = true;
+    } else {
+      if (selectedTags.indexOf(tagid) !== -1) selectedTags.splice(selectedTags.indexOf(tagid), 1);
+      setSelectedTags(_toConsumableArray(selectedTags));
+      tags.find(function (x) {
+        return x.id === tagid;
+      }).isChecked = false;
+    }
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.body.style.backgroundColor = "#2C2C33";
+    setIsLoading(true);
+    fetch("http://" + window.location.host + "/api/tags/" + userid, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      result.tags.forEach(function (tag) {
+        if (preChecked.indexOf(tag.id) !== -1) {
+          selectedTags.push(tag.id);
+        }
+
+        tag.isChecked = preChecked.indexOf(tag.id) !== -1 ? true : false;
+      });
+      setTags(result.tags);
+      setIsLoading(false);
+    }, function (error) {
+      alert("error");
+    });
+    console.log("LinkMaker Update");
+  }, [callParent]);
+
+  function handleSubmit(event) {
+    setIsLoading(true);
+    event.preventDefault();
+    fetch("http://".concat(window.location.host, "/api/user/").concat(params.userId, "/tag/"), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token //'Content-Type': 'application/x-www-form-urlencoded',
+
+      },
+      body: JSON.stringify({
+        name: name,
+        perm_read: permRead,
+        perm_write: permWrite
+      })
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setName("");
+      setPermRead("");
+      setPermWrite("");
+      setIsLoading(false); //Update parent and siblings
+
+      props.setData([].concat());
+    }, function (error) {
+      alert(error);
+    });
+  }
+
+  var tagArr = [];
+
+  if (tags.length != 0) {
+    tags.map(function (tag, index) {
+      return tagArr.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+        key: index
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], {
+        controlid: "tag"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Check, {
+        type: "checkbox",
+        label: tag.name,
+        id: tag.id,
+        onChange: function onChange(e) {
+          return updateSelectedTags(e, tag.id);
+        },
+        checked: tag.isChecked
+      }))));
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-light"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: ""
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Add New Tag")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container-fluid mt-3 mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], {
+    controlId: "name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormLabel"], null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["FormControl"], {
+    required: true,
+    type: "text",
+    value: name,
+    onChange: function onChange(e) {
+      return setName(e.target.value);
+    },
+    className: "bg-theme3 border-0 text-white"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+    controlId: "read_perm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Label, null, "Read Permission"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
+    as: "select",
+    className: "bg-theme3 border-0 text-white",
+    value: permRead,
+    onChange: function onChange(e) {
+      return setPermRead(e.target.value);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "private"
+  }, "Only Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "friends"
+  }, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "public"
+  }, "Anyone"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+    controlId: "write_perm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Label, null, "Write Permission"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
+    as: "select",
+    className: "bg-theme3 border-0 text-white",
+    value: permWrite,
+    onChange: function onChange(e) {
+      return setPermWrite(e.target.value);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "private"
+  }, "Only Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "friends"
+  }, "Friends"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    block: true,
+    disabled: validateForm(),
+    type: "submit"
+  }, "Add Tag"))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (TagDiv);
+
+/***/ }),
+
 /***/ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/TagDiv.js":
 /*!*************************************************************************************************************!*\
   !*** C:/Folders/Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/TagDiv.js ***!
@@ -87621,6 +87914,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -87676,6 +87977,11 @@ function TagsDiv() {
       tagsLoading = _useState8[0],
       setTagsLoading = _useState8[1];
 
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState10 = _slicedToArray(_useState9, 2),
+      errorMessage = _useState10[0],
+      setErrorMessage = _useState10[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     document.body.style.backgroundColor = "#2C2C33";
     fetch("http://".concat(window.location.host, "/api/tags/").concat(params.userId, "/"), {
@@ -87688,15 +87994,33 @@ function TagsDiv() {
     }).then(function (res) {
       return res.json();
     }).then(function (result) {
-      setTags(result.tags);
       setTagsLoading(false);
+
+      if (result.status === "success") {
+        setTags(result.tags);
+      } else {
+        setErrorMessage(result.message);
+      }
     }, function (error) {
       alert("error");
     });
   }, []);
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function tagDelete(index, tagId) {
+    fetch("http://".concat(window.location.host, "/api/user/").concat(params.userId, "/tag/").concat(tagId), {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      tags.splice(index, 1);
+      setTags(_toConsumableArray(tags));
+    }, function (error) {
+      alert("error");
+    });
   }
 
   var tagArr = [];
@@ -87728,14 +88052,21 @@ function TagsDiv() {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "button",
         className: "btn btn-danger btn-block float-right h-100 ml-4 shadow-sm",
-        value: "Delete Tag"
+        value: "Delete Tag",
+        onClick: function onClick() {
+          return tagDelete(index, tag.id);
+        }
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
     });
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container-fluid"
-  }, !tagsLoading && tagArr.length > 0 && tagArr, !tagsLoading && tagArr.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "This user has no tags, or the tags visibility is set to private")));
+  }, !tagsLoading && tagArr.length > 0 && errorMessage === "" && tagArr, !tagsLoading && tagArr.length === 0 && errorMessage === "" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "text-white"
+  }, "This user has no tags yet.")), !tagsLoading && errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "text-white"
+  }, errorMessage)));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (TagsDiv);
@@ -87845,6 +88176,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _TagsDiv__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TagsDiv */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/TagsDiv.js");
+/* harmony import */ var _TagAddDiv__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TagAddDiv */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/TagAddDiv.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -87863,18 +88195,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Tags() {
-  var params = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])();
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+function Tag() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      email = _useState2[0],
-      setEmail = _useState2[1];
+      didMount = _useState2[0],
+      setDidMount = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
-      _useState4 = _slicedToArray(_useState3, 2),
-      password = _useState4[0],
-      setPassword = _useState4[1];
+  var params = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])();
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('token') || ''),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -87891,50 +88219,119 @@ function Tags() {
       userid = _React$useState6[0],
       setUserid = _React$useState6[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isLoading = _useState4[0],
+      setIsLoading = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("Loading..."),
       _useState6 = _slicedToArray(_useState5, 2),
-      isLoading = _useState6[0],
-      setIsLoading = _useState6[1];
+      name = _useState6[0],
+      setName = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      profileId = _useState8[0],
-      setProfileId = _useState8[1];
+      accessToken = _useState8[0],
+      setAccessToken = _useState8[1];
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState10 = _slicedToArray(_useState9, 2),
-      profileLoading = _useState10[0],
-      setProfileLoading = _useState10[1];
+      readPerm = _useState10[0],
+      setReadPerm = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      profileName = _useState12[0],
-      setProfileName = _useState12[1];
+      writePerm = _useState12[0],
+      setWritePerm = _useState12[1];
 
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([parseInt(params.tagId)]),
       _useState14 = _slicedToArray(_useState13, 2),
-      profileFriend = _useState14[0],
-      setProfileFriend = _useState14[1];
+      testing = _useState14[0],
+      setTesting = _useState14[1];
 
-  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([[]]),
       _useState16 = _slicedToArray(_useState15, 2),
-      profilePendingTo = _useState16[0],
-      setProfilePendingTo = _useState16[1];
+      state = _useState16[0],
+      setState = _useState16[1];
 
   var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState18 = _slicedToArray(_useState17, 2),
-      profilePendingFrom = _useState18[0],
-      setProfilePendingFrom = _useState18[1];
+      profileLoading = _useState18[0],
+      setProfileLoading = _useState18[1];
 
-  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState20 = _slicedToArray(_useState19, 2),
-      friendDeleteLoading = _useState20[0],
-      setFriendDeleteLoading = _useState20[1];
+      profileVisibility = _useState20[0],
+      setProfileVisibility = _useState20[1];
 
-  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState22 = _slicedToArray(_useState21, 2),
-      tags = _useState22[0],
-      setTags = _useState22[1];
+      profileId = _useState22[0],
+      setProfileId = _useState22[1];
+
+  var _useState23 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState24 = _slicedToArray(_useState23, 2),
+      profileEditLoading = _useState24[0],
+      setProfileEditLoading = _useState24[1];
+
+  var _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState26 = _slicedToArray(_useState25, 2),
+      profileName = _useState26[0],
+      setProfileName = _useState26[1];
+
+  var _useState27 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState28 = _slicedToArray(_useState27, 2),
+      profileFriend = _useState28[0],
+      setProfileFriend = _useState28[1];
+
+  var _useState29 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState30 = _slicedToArray(_useState29, 2),
+      profilePendingTo = _useState30[0],
+      setProfilePendingTo = _useState30[1];
+
+  var _useState31 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState32 = _slicedToArray(_useState31, 2),
+      profilePendingFrom = _useState32[0],
+      setProfilePendingFrom = _useState32[1];
+
+  var _useState33 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState34 = _slicedToArray(_useState33, 2),
+      userErrorMessage = _useState34[0],
+      setUserErrorMessage = _useState34[1];
+
+  function handleProfileVisibilityChange(e) {
+    setProfileVisibility(e.target.value);
+  } //Update tag info
+
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (didMount) {
+      updateTag();
+    }
+  }, [profileVisibility]);
+
+  function updateTag() {
+    setTagEditLoading(true);
+    fetch("http://".concat(window.location.host, "/api/user/").concat(userid, "/tag/").concat(params.tagId), {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token //'Content-Type': 'application/x-www-form-urlencoded',
+
+      },
+      body: JSON.stringify({
+        name: name,
+        perm_read: readPerm,
+        perm_write: writePerm
+      })
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setTagEditLoading(false);
+    }, function (error) {
+      alert("error");
+    });
+  }
 
   function friendDelete(index) {
     setProfileLoading(true);
@@ -88022,68 +88419,114 @@ function Tags() {
     }).then(function (res) {
       return res.json();
     }).then(function (result) {
-      setProfileId(params.userId);
-      setProfileId(result.user.id);
-      setProfileName(result.user.username);
-
-      if (result.isfriend === true) {
-        setProfileFriend(true);
-      } else {
-        setProfileFriend(false);
-
-        if (result.pending === "from") {
-          setProfilePendingFrom(true);
-        } else if (result.pending === "to") {
-          setProfilePendingTo(true);
-        }
-      }
-
       setIsLoading(false);
+
+      if (result.status === "success") {
+        setProfileId(params.userId);
+        setProfileId(result.user.id);
+        setProfileName(result.user.username);
+
+        if (result.isfriend === true) {
+          setProfileFriend(true);
+        } else {
+          setProfileFriend(false);
+
+          if (result.pending === "from") {
+            setProfilePendingFrom(true);
+          } else if (result.pending === "to") {
+            setProfilePendingTo(true);
+          }
+        }
+      } else {
+        setUserErrorMessage(result.message);
+      }
     }, function (error) {
       alert("error");
     });
-  }, []);
+  }, [state]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container"
+    className: "container-fluid d-flex justify-content-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-8"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card text-light border-0",
+    className: "cw-90",
     style: {
-      backgroundColor: "#3B3B45"
+      maxWidth: "2000px"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "mx-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card-header row",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "mb-0 gray",
     style: {
-      fontSize: "25px"
+      color: "gray"
     }
+  }, "User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    style: {
+      color: "lightgray"
+    }
+  }, params.username, " >_"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 text-center"
-  }, !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "float-left"
-  }, "".concat(profileName, "'s Profile")), isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "float-left"
-  }, "Loading Profile..")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-3 text-center pr-0"
-  }, !isLoading && params.userId !== userid && !profileFriend && profilePendingTo && !profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "cw-90"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "mb-0",
+    style: {
+      color: "gray"
+    }
+  }, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "d-inline",
+    style: {
+      color: "lightgray"
+    }
+  }, "Profile >_")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-center mt-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cw-90"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-8 cmf pl-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TagsDiv__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    makeUpdate: state
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), !isLoading && userid === params.userId && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TagAddDiv__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    testing: testing,
+    setData: setState
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card text-white bg-dark"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Tag Info")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-text"
+  }, !isLoading && userErrorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, userErrorMessage), !isLoading && userid === params.userId && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Profile Visibility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    onChange: function onChange(e) {
+      return handleProfileVisibilityChange(e);
+    },
+    value: profileVisibility,
+    disabled: profileEditLoading,
+    className: "custom-select bg-theme3 border-0 text-white"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "private"
+  }, "Only Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "friends"
+  }, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "public"
+  }, "Anyone")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), !isLoading && params.userId !== userid && !profileFriend && profilePendingTo && !profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pb-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "button",
     className: "btn btn-success btn-block float-right h-100 ml-4 shadow-sm",
     value: "Accept Request",
     onClick: friendRequestAccept,
     disabled: profileLoading
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-3 text-center pr-0"
+    className: "pt-1"
   }, !isLoading && params.userId !== userid && profileFriend && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "button",
     className: "btn btn-danger btn-block float-right h-100 ml-4 shadow-sm",
     value: "Remove Friend",
     onClick: friendDelete,
     disabled: profileLoading
-  }), !isLoading && params.userId !== userid && !profileFriend && !profilePendingTo && !profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }), !isLoading && params.userId !== userid && !profileFriend && !profilePendingTo && !profilePendingFrom && !userErrorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "button",
     className: "btn btn-success btn-block float-right h-100 ml-4 shadow-sm",
     value: "Add Friend",
@@ -88101,12 +88544,14 @@ function Tags() {
     value: "Deny Request",
     onClick: friendRequestDelete,
     disabled: profileLoading
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container-fluid mt-5 mb-3"
-  }, Object(_TagsDiv__WEBPACK_IMPORTED_MODULE_4__["default"])()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))))));
+  })), !isLoading && userid === params.userId && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-danger btn-block float-right h-100 ml-4 shadow-sm",
+    value: "Delete Account"
+  }))))))))))));
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Tags);
+/* harmony default export */ __webpack_exports__["default"] = (Tag);
 
 /***/ }),
 
@@ -88625,6 +89070,287 @@ function Tags() {
     type: "button",
     onClick: tagAddSend
   }, "Add Tag"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Tags);
+
+/***/ }),
+
+/***/ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/oldView.js":
+/*!**************************************************************************************************************!*\
+  !*** C:/Folders/Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/oldView.js ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _TagsDiv__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TagsDiv */ "../../../../Private/Sync/MEGA/Synced/Projects/Programming/Web/linked/resources/js/components/TagsDiv.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+function Tags() {
+  var params = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])();
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      email = _useState2[0],
+      setEmail = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      password = _useState4[0],
+      setPassword = _useState4[1];
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('token') || ''),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      token = _React$useState2[0],
+      setToken = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('username') || ''),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      username = _React$useState4[0],
+      setUsername = _React$useState4[1];
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(localStorage.getItem('userid') || ''),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      userid = _React$useState6[0],
+      setUserid = _React$useState6[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isLoading = _useState6[0],
+      setIsLoading = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      profileId = _useState8[0],
+      setProfileId = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      profileLoading = _useState10[0],
+      setProfileLoading = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState12 = _slicedToArray(_useState11, 2),
+      profileName = _useState12[0],
+      setProfileName = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      profileFriend = _useState14[0],
+      setProfileFriend = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      profilePendingTo = _useState16[0],
+      setProfilePendingTo = _useState16[1];
+
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState18 = _slicedToArray(_useState17, 2),
+      profilePendingFrom = _useState18[0],
+      setProfilePendingFrom = _useState18[1];
+
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState20 = _slicedToArray(_useState19, 2),
+      friendDeleteLoading = _useState20[0],
+      setFriendDeleteLoading = _useState20[1];
+
+  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState22 = _slicedToArray(_useState21, 2),
+      tags = _useState22[0],
+      setTags = _useState22[1];
+
+  function friendDelete(index) {
+    setProfileLoading(true);
+    fetch("http://".concat(window.location.host, "/api/user/").concat(profileId), {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setProfileLoading(false);
+      setProfileFriend(false);
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  function friendRequestCreate(index) {
+    setProfileLoading(true);
+    fetch("http://".concat(window.location.host, "/api/user/").concat(profileId, "/add"), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setProfileLoading(false);
+      setProfilePendingFrom(true);
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  function friendRequestAccept(index) {
+    setProfileLoading(true);
+    fetch("http://".concat(window.location.host, "/api/user/").concat(profileId, "/request"), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setProfileLoading(false);
+      setProfileFriend(true);
+      setProfilePendingTo(false);
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  function friendRequestDelete(index) {
+    setProfileLoading(true);
+    fetch("http://".concat(window.location.host, "/api/user/").concat(profileId, "/request"), {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setProfileLoading(false);
+      setProfilePendingTo(false);
+      setProfilePendingFrom(false);
+    }, function (error) {
+      alert("error");
+    });
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    //TODO: add accesstoken defaulting to empty string
+    document.body.style.backgroundColor = "#2C2C33";
+    fetch("http://".concat(window.location.host, "/api/user/").concat(params.userId, "/details/"), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (result) {
+      setProfileId(params.userId);
+      setProfileId(result.user.id);
+      setProfileName(result.user.username);
+
+      if (result.isfriend === true) {
+        setProfileFriend(true);
+      } else {
+        setProfileFriend(false);
+
+        if (result.pending === "from") {
+          setProfilePendingFrom(true);
+        } else if (result.pending === "to") {
+          setProfilePendingTo(true);
+        }
+      }
+
+      setIsLoading(false);
+    }, function (error) {
+      alert("error");
+    });
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card text-light border-0",
+    style: {
+      backgroundColor: "#3B3B45"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mx-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-header row",
+    style: {
+      fontSize: "25px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 text-center"
+  }, !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "float-left"
+  }, "".concat(profileName, "'s Profile")), isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "float-left"
+  }, "Loading Profile..")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3 text-center pr-0"
+  }, !isLoading && params.userId !== userid && !profileFriend && profilePendingTo && !profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-success btn-block float-right h-100 ml-4 shadow-sm",
+    value: "Accept Request",
+    onClick: friendRequestAccept,
+    disabled: profileLoading
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3 text-center pr-0"
+  }, !isLoading && params.userId !== userid && profileFriend && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-danger btn-block float-right h-100 ml-4 shadow-sm",
+    value: "Remove Friend",
+    onClick: friendDelete,
+    disabled: profileLoading
+  }), !isLoading && params.userId !== userid && !profileFriend && !profilePendingTo && !profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-success btn-block float-right h-100 ml-4 shadow-sm",
+    value: "Add Friend",
+    onClick: friendRequestCreate,
+    disabled: profileLoading
+  }), !isLoading && params.userId !== userid && !profileFriend && !profilePendingTo && profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-danger btn-block float-right h-100 ml-4 shadow-sm",
+    value: "Cancel Request",
+    onClick: friendRequestDelete,
+    disabled: profileLoading
+  }), !isLoading && params.userId !== userid && !profileFriend && profilePendingTo && !profilePendingFrom && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    className: "btn btn-danger btn-block float-right h-100 ml-4 shadow-sm",
+    value: "Deny Request",
+    onClick: friendRequestDelete,
+    disabled: profileLoading
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container-fluid mt-5 mb-3"
+  }, Object(_TagsDiv__WEBPACK_IMPORTED_MODULE_4__["default"])()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Tags);

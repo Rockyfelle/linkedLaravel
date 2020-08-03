@@ -41,17 +41,17 @@ class TagsController extends Controller
 			if (DB::table('users')->where('id', $userId)->where('tagvisibility', 'public')->exists()) {
 
 				$tags = DB::table('tags')->select('id', 'user_id', 'name', 'perm_read', 'perm_write', 'access_token')->where('user_id', $userId)->get();
-				return ['visibility' => 'public', 'tags' => $tags];
+				return ['status' => 'success', 'visibility' => 'public', 'tags' => $tags];
 			}
 
 			//No access route found, report information on user
 			$visibility = DB::table('users')->select('tagvisibility')->where('id', Auth::id())->pluck('tagvisibility');
-			return ['status' => 'no_visibility', 'visibility' => $visibility[0]];
+			return ['status' => 'failed', 'code' => 'privacy', 'visibility' => $visibility[0], 'message' => 'The users privacy settings prevents you from seeing their tags.'];
 		}
 
 		//User not found, report information
 		$visibility = DB::table('users')->select('tagvisibility')->where('id', Auth::id())->pluck('tagvisibility');
-		return ['status' => 'no_user'];
+		return ['status' => 'failed', 'code' => 'no-user', 'message' => 'User could not be found.'];
 
         
     }

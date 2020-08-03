@@ -8,9 +8,11 @@ function Login() {
 	const [token, setToken] = useState("");
 	const [username, setUsername] = useState("");
 	const [userid, setUserid] = useState("");
+	const [loginError, setLoginError] = useState("");
+	const [loginLoading, setLoginLoading] = useState(false);
 
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return email.length > 5 && password.length > 7 && !loginLoading;
 	}
 	
 	useEffect(() => {
@@ -18,6 +20,8 @@ function Login() {
       }, []);
 
     function handleSubmit(event) {
+		setLoginError("");
+		setLoginLoading(true);
         event.preventDefault();
         fetch("http://" + window.location.host + "/api/login", {
             method: 'POST',
@@ -30,13 +34,18 @@ function Login() {
             .then(res => res.json())
             .then(
                 (result) => {
-					setToken(result.token);
-					setUsername(result.username);
-					setUserid(result.userid);
-					localStorage.setItem('token', result.token);
-					localStorage.setItem('username', result.username);
-					localStorage.setItem('userid', result.userid);
-					window.location.replace(window.location.host + "/user/me/me/tags");
+					setLoginLoading(false);
+					if (result.status === 'success') {
+						setToken(result.token);
+						setUsername(result.username);
+						setUserid(result.userid);
+						localStorage.setItem('token', result.token);
+						localStorage.setItem('username', result.username);
+						localStorage.setItem('userid', result.userid);
+						window.location.replace(`http://${window.location.host}/user/${result.username}/${result.userid}/view`);
+					} else {
+						setLoginError(result.errormessage);
+					}
                 },
                 (error) => {
                     alert("error");
@@ -73,17 +82,22 @@ function Login() {
 													className="bg-theme3 border-0 text-white"
 												/>
 											</FormGroup>
+											{loginError && 
+												<div className="pb-3">
+													<i className="text-danger">{loginError}</i>
+												</div>
+											}
 											<Button block disabled={!validateForm()} type="submit">
 												Login
-										</Button>
-									</form>
+											</Button>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
     );
 }

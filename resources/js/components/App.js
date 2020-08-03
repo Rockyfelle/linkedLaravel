@@ -10,8 +10,9 @@ import Newlink from './Newlink'
 import Editlink from './Editlink'
 import Edittag from './Edittag'
 import Friends from './Friends'
-import View from './View'
+import oldView from './oldView'
 import Tag from './Tag'
+import View from './View'
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -89,6 +90,7 @@ function App() {
 							<Route path="/user/:username/:userId/editlink/:tagname/:tagId/:linkname/:linkId" component={Editlink} />
 							<Route path="/user/:username/:userId/edittag/:tagname/:tagId/" component={Edittag} />
 							<Route path="/user/:username/:userId/friends" component={Friends} />
+							<Route path="/user/:username/:userId/oldview" component={oldView} />
 							<Route path="/user/:username/:userId/view" component={View} />
 							<Route path="/user/:username/:userId/tag/:tagname/:tagId/:tagPerm?" component={Tag} />
 							<Route component={Error} />

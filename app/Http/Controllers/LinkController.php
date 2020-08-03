@@ -99,6 +99,7 @@ class LinkController extends Controller //TODO: validate forms max and min chars
 	public function update(Request $request, $linkId)
 	{
 		//TODO: Download taglinks related to link and make sure the first one is owned by user
+		//TODO: Make people with write-perm able to add links also
 
 		//Check if user is logged in
 		if (Auth::check()) {
@@ -167,7 +168,7 @@ class LinkController extends Controller //TODO: validate forms max and min chars
 			return ['status' => 'success'];
 		}
 		//Not logged in, deny access
-		abort(401);
+		return ['status' => 'failed', 'code' => 'no-login', 'message' => 'You need to be logged in to do this.'];
 	}
 
 	public function deleteReturn ($linkId)

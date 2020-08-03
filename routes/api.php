@@ -42,6 +42,7 @@ Route::middleware('auth:api')->group(function() {
 	Route::get('user/{userId}/tag/simple/{tagId}/', 'TagController@get');
 	Route::delete('user/{userId}/tag/{tagId}/{token?}', 'TagController@delete');
 	Route::put('user/{userId}/tag/{tagId}', 'TagController@update');
+	Route::post('user/{userId}/tag/', 'TagController@new');
 	Route::get('user/{userId}/friends', 'FriendsController@get');
 	Route::post('user/{userId}/add', 'FriendsController@add');
 	Route::post('user/{userId}/request', 'FriendsController@accept');

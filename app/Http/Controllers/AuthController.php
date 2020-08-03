@@ -49,9 +49,17 @@ class AuthController extends Controller
 			$token = $user->createToken($user->email.'-'.now());
 
 			return response()->json([
+				'status' => 'success',
 				'token' => $token->accessToken,
 				'username' => $user->username,
 				'userid' => $user->id,
+			]);
+		}
+		else {
+			return response()->json([
+				'status' => 'failed',
+				'code' => 'data-unmatched',
+				'errormessage' => 'Wrong email or password.',
 			]);
 		}
 	}

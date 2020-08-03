@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function get(Request $request, $userId)
     {
-		$userDetails = DB::table('users')->select('id', 'username')->where('id', $userId)->first();
+		$userDetails = DB::table('users')->select('id', 'username', 'tagvisibility')->where('id', $userId)->first();
 		if ($userDetails !== null) {
 
 			if (Auth::check()) {
@@ -48,7 +48,7 @@ class UserController extends Controller
 			return ['status' => 'success', 'user' => $userDetails, 'isfriend' => $isFriend, 'pending' => $pending];
 		} else {
 			
-			return ['status' => 'notfound', 'message' => 'User was not found, or profile is private/banned.'];
+			return ['status' => 'failed', 'code' => 'no-user', 'message' => 'User could not be found.'];
 		}
 		
 		//If

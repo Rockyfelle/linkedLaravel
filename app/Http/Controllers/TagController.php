@@ -10,6 +10,27 @@ use Illuminate\Http\Request;
 class TagController extends Controller
 {//TODO: include data regarding the users perms, if they have the write perm
 
+	public function new(Request $request, $userId)
+	{
+		//Check if user is insisting that the requested tag is owned by them
+		if ($userId == "me" || $userId == Auth::id()) {
+
+			//Check if user is logged in
+			if (Auth::check()) {
+				
+				DB::table('tags')->insert(
+					['user_id' => Auth::id(),
+					'name' => $request->name,
+					'perm_read' => $request->perm_read,
+					'perm_write' => $request->perm_write,
+					'access_token' => ""]
+				);
+
+				return ['status' => 'success'];
+			}
+		}
+	}
+
 	public function update(Request $request, $userId, $tagId)
 	{
 		//Check if user is insisting that the requested tag is owned by them
@@ -82,9 +103,10 @@ class TagController extends Controller
 				if (DB::table('tags')->where('id', $tagId)->where('user_id', Auth::id())->exists()) {
 
 					//Delete tag and remove all taglink connections to links under it, and remove all links that do not have other tags
-					//DB::table('tags')->where('id', $tagId)->delete();
-					//DB::table('taglinks')->where('tag_id', $tagId)->delete();
+					DB::table('tags')->where('id', $tagId)->delete();
+					DB::table('taglinks')->where('tag_id', $tagId)->delete();
 					$links = DB::table('links')->leftJoin('taglinks', 'links.id', '=', 'taglinks.link_id')->whereNull('taglinks.link_id')->select('links.id')->get()->pluck('id');
+					DB::table('links')->whereIn('id', $links)->delete();
 
 					return ['links' => $links];
 				}
@@ -197,6 +219,6 @@ class TagController extends Controller
 		}
 
 		//No access route was found, deny access
-		abort(405);
+		return ['status' => 'failed', 'code' => 'no-permission', 'message' => 'You don\'t have the required priveleges to view this.'];
 	}
 }
